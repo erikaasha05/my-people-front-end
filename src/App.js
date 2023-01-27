@@ -1,10 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <NavBar />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -16,6 +18,16 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+        </a>
+        <a
+          className="btn btn-primary"
+          data-bs-toggle="collapse"
+          href="#collapseExample"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Bootstrap button
         </a>
       </header>
     </div>
