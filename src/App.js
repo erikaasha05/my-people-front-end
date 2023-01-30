@@ -1,9 +1,11 @@
+import { Container } from "react-bootstrap";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import NewContactForm from "./components/NewContactForm";
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <header className="App-header">
         <NavBar />
         <a
@@ -17,7 +19,8 @@ function App() {
           Bootstrap button
         </a>
       </header>
-    </div>
+      <NewContactForm />
+    </Container>
   );
 }
 
