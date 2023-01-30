@@ -142,7 +142,7 @@ const NewContactForm = () => {
 };
 
 NewContactForm.propTypes = {
-  handleContacSubmit: PropTypes.func,
+  handleContactSubmit: PropTypes.func,
 };
 
 export default NewContactForm;

@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import NewContactForm from "./components/NewContactForm";
+import NewReminderForm from "./components/NewReminderForm";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </a>
       </header>
       <NewContactForm />
+      <NewReminderForm />
     </Container>
   );
 }
