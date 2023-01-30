@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import ListGroup from "react-bootstrap/ListGroup"
+// import PropTypes from 'prop-types'
+import ListGroup from "react-bootstrap/ListGroup";
 
 const ContactList = (props) => {
   const contactList = props.contacts.map((contact) => {
