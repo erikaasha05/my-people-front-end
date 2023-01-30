@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import NewReminderForm from "./NewReminderForm";
 
 const Contact = (props) => {
   return (
@@ -13,7 +14,7 @@ const Contact = (props) => {
       <p>Notes: {props.contactInfo.notes}</p>
       {props.contactInfo.email ? 
         <Button>Email {props.contactInfo.firstName}</Button> : null}
-      <Button>Set Reminder</Button>
+      <NewReminderForm />
     </div>
   );
 };

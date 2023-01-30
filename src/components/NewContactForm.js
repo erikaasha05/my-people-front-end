@@ -44,6 +44,7 @@ const NewContactForm = () => {
           onChange={handleNewContactData}
           required="true"
           placeholder="First Name"
+          autoFocus
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -67,7 +68,7 @@ const NewContactForm = () => {
           value={contactData.number}
           onChange={handleNewContactData}
           required="true"
-          placeholder="Phone Number"
+          placeholder="123-456-7890"
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -75,10 +76,10 @@ const NewContactForm = () => {
         <Form.Control
           type="email"
           id="email"
-          name="femail"
+          name="email"
           value={contactData.email}
           onChange={handleNewContactData}
-          placeholder="Enter Email"
+          placeholder="name@example.com"
         />
       </Form.Group>
       <Form.Group className="mb-3">
