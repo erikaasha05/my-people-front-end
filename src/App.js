@@ -1,28 +1,50 @@
 import { Container } from "react-bootstrap";
 import "./App.css";
+import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import NewContactForm from "./components/NewContactForm";
 import NewReminderForm from "./components/NewReminderForm";
 
+const contactData = [
+  {
+    contactId: 1,
+    firstName: "Erika",
+    lastName: "Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 2,
+    firstName: "Huey",
+    lastName: "Anderson-Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+]
+
+
 function App() {
   return (
-    <Container>
+    <section>
       <header className="App-header">
-        <NavBar />
-        <a
-          className="btn btn-primary"
-          data-bs-toggle="collapse"
-          href="#collapseExample"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
-          Bootstrap button
-        </a>
+          <NavBar />
       </header>
-      <NewContactForm />
-      <NewReminderForm />
-    </Container>
+      <Container>
+        <ContactList contacts={contactData}/>
+        <NewContactForm />
+        <NewReminderForm />
+      </Container>
+    </section>
   );
 }
 
