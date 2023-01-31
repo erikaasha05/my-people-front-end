@@ -4,7 +4,25 @@ import "./App.css";
 import Contact from "./components/Contact";
 import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
+import ReminderList from "./components/ReminderList";
 
+const reminderData = [
+  {
+    reminderId: 1,
+    message: "this is a message",
+    date: "02/01/2023"
+  },
+  {
+    reminderId: 2,
+    message: "huey's birthday",
+    date: "03/17/2023"
+  },
+  {
+    reminderId: 3,
+    message: "my birthday",
+    date: "12/05/2023"
+  }
+]
 
 const contactData = [
   {
@@ -58,6 +76,7 @@ function App() {
       <Container>
         <ContactList contacts={contactData}/>
         <Contact contactInfo={oneContact}/>
+        <ReminderList reminders={reminderData}/>
       </Container>
     </section>
   );

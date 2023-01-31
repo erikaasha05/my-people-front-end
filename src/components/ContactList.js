@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 // import PropTypes from 'prop-types'
 import ListGroup from "react-bootstrap/ListGroup";
 
 const ContactList = (props) => {
-  const contactList = props.contacts.map((contact) => {
+  const contacts = props.contacts.map((contact) => {
     return (
       <ListGroup.Item action variant="info" className="mb-2" key={contact.contactId}>
         <div className="ms-2 me-auto">
@@ -12,9 +12,9 @@ const ContactList = (props) => {
         </div>
       </ListGroup.Item>
     );
-  })
+  });
   return (
-    <ListGroup variant="flush">{contactList}</ListGroup>
+    <ListGroup variant="flush">{contacts}</ListGroup>
   );
 };
 
