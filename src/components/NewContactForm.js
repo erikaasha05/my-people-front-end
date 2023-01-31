@@ -25,9 +25,12 @@ const formatNumber = (value) => {
   } else if (phoneNumberLength < 7) {
     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
   } else {
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 10)}`;
   }
-}
+};
 
 const NewContactForm = () => {
   const [contactData, setContactData] = useState(kDefaultFormData);
@@ -43,11 +46,14 @@ const NewContactForm = () => {
     const dataField = event.target.name;
 
     if (dataField === "number") {
-      const formattedNumber = { ...contactData, [dataField]: formatNumber(dataValue) };
+      const formattedNumber = {
+        ...contactData,
+        [dataField]: formatNumber(dataValue),
+      };
       setContactData(formattedNumber);
     } else {
       const newContact = { ...contactData, [dataField]: dataValue };
-    setContactData(newContact);
+      setContactData(newContact);
     }
   };
 
@@ -87,7 +93,7 @@ const NewContactForm = () => {
           value={contactData.number}
           onChange={handleNewContactData}
           required="true"
-          placeholder="123-456-7890"
+          placeholder="Enter Phone Number"
         />
       </Form.Group>
       <Form.Group className="mb-3">
