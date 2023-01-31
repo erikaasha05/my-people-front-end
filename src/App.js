@@ -158,7 +158,7 @@ const oneContact =
     birthday: "12/05/1993",
     relationships: ["Ian's Fiancee"],
     notes: "notes will be here",
-    tags: ["tag 1"]
+    tags: ["tag 1", "tag 2"]
   }
 
 

@@ -15,6 +15,20 @@ const kDefaultFormData = {
   tags: null,
 };
 
+// helper function to help format phone numbers
+const formatNumber = (value) => {
+  const phoneNumber = value.replace(/[^\d]/g, "");
+  const phoneNumberLength = phoneNumber.length;
+
+  if (phoneNumberLength < 4) {
+    return phoneNumber;
+  } else if (phoneNumberLength < 7) {
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+  } else {
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  }
+}
+
 const NewContactForm = () => {
   const [contactData, setContactData] = useState(kDefaultFormData);
 
@@ -28,8 +42,13 @@ const NewContactForm = () => {
     const dataValue = event.target.value;
     const dataField = event.target.name;
 
-    const newContact = { ...contactData, [dataField]: dataValue };
+    if (dataField === "number") {
+      const formattedNumber = { ...contactData, [dataField]: formatNumber(dataValue) };
+      setContactData(formattedNumber);
+    } else {
+      const newContact = { ...contactData, [dataField]: dataValue };
     setContactData(newContact);
+    }
   };
 
   return (

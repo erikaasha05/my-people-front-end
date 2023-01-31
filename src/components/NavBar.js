@@ -42,6 +42,7 @@ const NavBar = () => {
               </Modal.Body>
             </Modal>
             <Nav.Link href="#reminders">Reminders</Nav.Link>
+            <Nav.Link href="#map">Map</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
