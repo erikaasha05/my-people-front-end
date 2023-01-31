@@ -7,19 +7,19 @@ import Modal from "react-bootstrap/Modal";
 const kDefaultFormData = {
   message: "",
   date: "",
-  show: false
+  show: false,
 };
 
 const NewReminderForm = (props) => {
   const [reminderData, setReminderData] = useState(kDefaultFormData);
 
   const handleClose = () => {
-    const closeReminder = { ...reminderData, "show": false}
+    const closeReminder = { ...reminderData, show: false };
     setReminderData(closeReminder);
   };
 
   const handleShow = () => {
-    const showReminder = { ...reminderData, "show": true}
+    const showReminder = { ...reminderData, show: true };
     setReminderData(showReminder);
   };
 
@@ -39,8 +39,8 @@ const NewReminderForm = (props) => {
 
   return (
     <div>
-      <Button onClick={handleShow}>
-          Set Reminder
+      <Button size="sm" onClick={handleShow}>
+        Set Reminder
       </Button>
       <Modal size="lg" show={reminderData.show} onHide={handleClose} centered>
         <Modal.Header closeButton>Add a Reminder</Modal.Header>
@@ -70,7 +70,9 @@ const NewReminderForm = (props) => {
                 placeholder="Date"
               />
             </Form.Group>
-            <Button type="submit" onClick={handleClose}>Add Reminder</Button>
+            <Button type="submit" onClick={handleClose}>
+              Add Reminder
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

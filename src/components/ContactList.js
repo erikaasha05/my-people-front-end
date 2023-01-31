@@ -1,6 +1,7 @@
 import React from "react";
 // import PropTypes from 'prop-types'
 import ListGroup from "react-bootstrap/ListGroup";
+import "./ContactList.css"
 
 const ContactList = (props) => {
   const contacts = props.contacts.map((contact) => {
@@ -14,7 +15,9 @@ const ContactList = (props) => {
     );
   });
   return (
-    <ListGroup variant="flush">{contacts}</ListGroup>
+    <div>
+      <ListGroup variant="flush">{contacts}</ListGroup>
+    </div>
   );
 };
 

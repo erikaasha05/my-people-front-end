@@ -49,6 +49,102 @@ const contactData = [
     notes: "notes will be here",
     tags: ["tag 1"]
   },
+  {
+    contactId: 1,
+    firstName: "Erika",
+    lastName: "Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 2,
+    firstName: "Huey",
+    lastName: "Anderson-Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 1,
+    firstName: "Erika",
+    lastName: "Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 2,
+    firstName: "Huey",
+    lastName: "Anderson-Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 1,
+    firstName: "Erika",
+    lastName: "Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 2,
+    firstName: "Huey",
+    lastName: "Anderson-Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 1,
+    firstName: "Erika",
+    lastName: "Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  },
+  {
+    contactId: 2,
+    firstName: "Huey",
+    lastName: "Anderson-Sha",
+    number: 7325128558,
+    email: "erikaasha05@gmail.com",
+    address: "50 Dey St.",
+    birthday: "12/05/1993",
+    relationships: ["Ian's Fiancee"],
+    notes: "notes will be here",
+    tags: ["tag 1"]
+  }
 ]
 
 const oneContact = 
@@ -74,12 +170,12 @@ function App() {
           <NavBar />
       </header>
       <Container className="mt-4">
-        <Row>
-          <Col md={3}>
+        <Row className="h-100">
+          <Col md={3} className="contact-container scrollbar scrollbar-near-moon">
           <ContactList contacts={contactData}/>
           </Col>
           <Col>
-          <ReminderList reminders={reminderData}/>
+          {/* <ReminderList reminders={reminderData}/> */}
           <Contact contactInfo={oneContact}/>
           </Col>
         </Row>
