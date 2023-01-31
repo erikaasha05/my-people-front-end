@@ -5,16 +5,16 @@ import ListGroup from "react-bootstrap/ListGroup";
 const ContactList = (props) => {
   const contactList = props.contacts.map((contact) => {
     return (
-      <ListGroup.Item action variant="info">
+      <ListGroup.Item action variant="info" className="mb-2" key={contact.contactId}>
         <div className="ms-2 me-auto">
           <div className="fw-bold">{contact.firstName} {contact.lastName}</div>
-          {contact.number}
+          📱 {contact.number}
         </div>
       </ListGroup.Item>
     );
   })
   return (
-    <ListGroup>{contactList}</ListGroup>
+    <ListGroup variant="flush">{contactList}</ListGroup>
   );
 };
 

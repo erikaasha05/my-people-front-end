@@ -42,7 +42,7 @@ const NewReminderForm = (props) => {
       <Button onClick={handleShow}>
           Set Reminder
       </Button>
-      <Modal show={reminderData.show} onHide={handleClose}>
+      <Modal size="lg" show={reminderData.show} onHide={handleClose} centered>
         <Modal.Header closeButton>Add a Reminder</Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>

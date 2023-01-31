@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import NewReminderForm from "./NewReminderForm";
 import logo from "../my_people_logo.png";
+import NewContactForm from "./NewContactForm";
+
 
 const NavBar = () => {
+  const [showModal, setShowModal] = useState(false)
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  const handleShow = () => {
+    setShowModal(true);
+  };
+
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand href="#home">
           <img
@@ -23,19 +34,14 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <NewReminderForm />
-            <Nav.Link href="#link">Add Contact</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link onClick={handleShow}>Add Contact</Nav.Link>
+            <Modal size="lg" show={showModal} onHide={handleClose} centered>
+              <Modal.Header closeButton>Add a New Contact</Modal.Header>
+              <Modal.Body>
+                <NewContactForm />
+              </Modal.Body>
+            </Modal>
+            <Nav.Link href="#reminders">Reminders</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
