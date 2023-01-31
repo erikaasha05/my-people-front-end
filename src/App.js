@@ -7,23 +7,23 @@ import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
 
-const reminderDataTest = [
-  {
-    reminderId: 1,
-    message: "this is a message",
-    date: "02/01/2023",
-  },
-  {
-    reminderId: 2,
-    message: "huey's birthday",
-    date: "03/17/2023",
-  },
-  {
-    reminderId: 3,
-    message: "my birthday",
-    date: "12/05/2023",
-  },
-];
+// const reminderDataTest = [
+//   {
+//     reminderId: 1,
+//     message: "this is a message",
+//     date: "02/01/2023",
+//   },
+//   {
+//     reminderId: 2,
+//     message: "huey's birthday",
+//     date: "03/17/2023",
+//   },
+//   {
+//     reminderId: 3,
+//     message: "my birthday",
+//     date: "12/05/2023",
+//   },
+// ];
 
 // const contactDataTest = [
 //   {
@@ -148,18 +148,18 @@ const reminderDataTest = [
 //   },
 // ];
 
-const oneContactTest = {
-  contactId: 1,
-  firstName: "Erika",
-  lastName: "Sha",
-  number: 7325128558,
-  email: "erikaasha05@gmail.com",
-  address: "50 Dey St.",
-  birthday: "12/05/1993",
-  relationships: ["Ian's Fiancee"],
-  notes: "notes will be here",
-  tags: ["tag 1", "tag 2"],
-};
+// const oneContactTest = {
+//   contactId: 1,
+//   firstName: "Erika",
+//   lastName: "Sha",
+//   number: 7325128558,
+//   email: "erikaasha05@gmail.com",
+//   address: "50 Dey St.",
+//   birthday: "12/05/1993",
+//   relationships: ["Ian's Fiancee"],
+//   notes: "notes will be here",
+//   tags: ["tag 1", "tag 2"],
+// };
 
 const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -174,15 +174,25 @@ const convertFromContactApi = (apiContact) => {
   return newContact;
 };
 
-// const convertFromReminderApi = (apiReminder) => {
-//   const { reminder_id, contact_id, ...rest } = apiReminder;
-//   const newReminder = {
-//     reminderId: reminder_id,
-//     contactId: contact_id,
-//     ...rest,
-//   };
-//   return newReminder;
-// };
+const convertToContactApi = (contact) => {
+  const { firstName, lastName, ...rest } = contact;
+  const apiContact = {
+    first_name: firstName,
+    last_name: lastName,
+    ...rest,
+  };
+  return apiContact;
+};
+
+const convertFromReminderApi = (apiReminder) => {
+  const { reminder_id, contact_id, ...rest } = apiReminder;
+  const newReminder = {
+    reminderId: reminder_id,
+    contactId: contact_id,
+    ...rest,
+  };
+  return newReminder;
+};
 
 const getAllContactsApi = () => {
   return axios
@@ -191,6 +201,25 @@ const getAllContactsApi = () => {
       return response.data.map(convertFromContactApi);
     })
     .catch((err) => console.log(`error from get contact api ${err}`));
+};
+
+const getOneContactApi = (contactId) => {
+  return axios
+    .get(`${kBaseUrl}/contacts/${contactId}`)
+    .then((response) => {
+      console.log(convertFromContactApi(response.data));
+      return convertFromContactApi(response.data);
+    })
+    .catch((err) => console.log(`error from get one contact api ${err}`));
+};
+
+const getAllRemindersApi = () => {
+  return axios
+    .get(`${kBaseUrl}/reminders`)
+    .then((response) => {
+      return response.data.map(convertFromReminderApi);
+    })
+    .catch((err) => console.log(`error from get reminders api ${err}`));
 };
 
 // const getRemindersForContactApi = (contactId) => {
@@ -222,42 +251,81 @@ const deleteContactApi = (contactId) => {
     .catch((err) => console.log(`delete contact api ${err}`));
 };
 
-// const deleteReminderApi = (reminderId) => {
-//   return axios
-//     .delete(`${kBaseUrl}/reminders/${reminderId}`)
-//     .then((response) => {
-//       return response.data.details;
-//     })
-//     .catch((err) => {
-//       console.log(`delete reminder api ${err}`);
-//     });
-// };
+const createReminderApi = (newReminderData) => {
+  return axios
+    .post(`${kBaseUrl}/reminders`, newReminderData)
+    .then((response => {
+      return response.data;
+    }))
+    .catch((err) => console.log(`create a reminder api ${err}`));
+};
+
+const deleteReminderApi = (reminderId) => {
+  return axios
+    .delete(`${kBaseUrl}/reminders/${reminderId}`)
+    .then((response) => {
+      return response.data.details;
+    })
+    .catch((err) => {
+      console.log(`delete reminder api ${err}`);
+    });
+};
 
 function App() {
   const [contactData, setContactData] = useState([]);
+  const [selectedContact, setSelectedContact] = useState({});
+  const [reminderData, setReminderData] = useState([]);
 
-  const getAllContacts = () =>{
+  const getAllContacts = () => {
     return getAllContactsApi().then((contacts) => {
       setContactData(contacts);
     });
   };
 
+  const getAllReminders = () => {
+    return getAllRemindersApi().then((reminders) =>{
+      setReminderData(reminders);
+    });
+  };
+
   useEffect(() => {
     getAllContacts();
+    getAllReminders();
   }, []);
 
   const deleteContact = (contactId) => {
     return deleteContactApi(contactId).then((contactResult) => {
-      return getAllContacts();
+      setSelectedContact({});
+      getAllContacts();
+    });
+  };
+
+  const deleteReminder = (reminderId) => {
+    return deleteReminderApi(reminderId).then((reminderResult) => {
+      getAllReminders();
     });
   };
 
   const handleNewContactSubmit = (data) => {
-    createContactApi(data)
+    const apiContactData = convertToContactApi(data);
+    createContactApi(apiContactData)
       .then((newContact) => {
         setContactData([...contactData, newContact]);
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleReminderSubmit = (data) => {
+    createReminderApi(data)
+      .then((newReminder) => {
+        setReminderData([...reminderData, newReminder]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const onContactSelect = async (contactId) => {
+    const contact = await getOneContactApi(contactId);
+    setSelectedContact(contact);
   };
 
   return (
@@ -271,11 +339,15 @@ function App() {
             md={3}
             className="contact-container scrollbar scrollbar-near-moon"
           >
-            <ContactList contacts={contactData} />
+            <ContactList contacts={contactData} onSelect={onContactSelect} />
           </Col>
           <Col>
-            <ReminderList reminders={reminderDataTest} />
-            <Contact contactInfo={oneContactTest} onDeleteContact={deleteContact} />
+            <ReminderList reminders={reminderData} onDeleteReminder={deleteReminder} />
+            <Contact
+              contactData={selectedContact}
+              onDeleteContact={deleteContact}
+              onReminderSubmit={handleReminderSubmit}
+            />
           </Col>
         </Row>
       </Container>

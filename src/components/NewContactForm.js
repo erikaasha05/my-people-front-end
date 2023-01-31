@@ -4,15 +4,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const kDefaultFormData = {
-  firstName: null,
-  lastName: null,
-  number: null,
-  email: null,
-  address: null,
-  birthday: null,
-  relationships: null,
-  notes: null,
-  tags: null,
+  firstName: "",
+  lastName: "",
+  number: "",
+  email: "",
+  address: "",
+  birthday: "",
+  relationships: "",
+  notes: "",
+  tags: "",
 };
 
 // helper function to help format phone numbers
@@ -67,7 +67,7 @@ const NewContactForm = (props) => {
           name="firstName"
           value={contactData.firstName}
           onChange={handleNewContactData}
-          required="true"
+          required={"true"}
           placeholder="First Name"
           autoFocus
         />
@@ -80,7 +80,7 @@ const NewContactForm = (props) => {
           name="lastName"
           value={contactData.lastName}
           onChange={handleNewContactData}
-          required="true"
+          required={"true"}
           placeholder="Last Name"
         />
       </Form.Group>
@@ -92,7 +92,7 @@ const NewContactForm = (props) => {
           name="number"
           value={contactData.number}
           onChange={handleNewContactData}
-          required="true"
+          required={"true"}
           placeholder="Enter Phone Number"
         />
       </Form.Group>

@@ -25,7 +25,7 @@ const NewReminderForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // props.handleContactSubmit(contactData);
+    props.onReminderSubmit(reminderData);
     setReminderData(kDefaultFormData);
   };
 
@@ -40,7 +40,7 @@ const NewReminderForm = (props) => {
   return (
     <div>
       <Button size="sm" onClick={handleShow}>
-        Set Reminder
+        Add Reminder
       </Button>
       <Modal size="lg" show={reminderData.show} onHide={handleClose} centered>
         <Modal.Header closeButton>Add a Reminder</Modal.Header>

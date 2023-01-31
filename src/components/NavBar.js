@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
 import logo from "../my_people_logo.png";
 import NewContactForm from "./NewContactForm";
 
@@ -40,6 +41,9 @@ const NavBar = (props) => {
               <Modal.Body>
                 <NewContactForm handleNewContactSubmit={props.handleNewContactSubmit} />
               </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={handleClose}>Close</Button>
+              </Modal.Footer>
             </Modal>
             <Nav.Link href="#reminders">Reminders</Nav.Link>
             <Nav.Link href="#map">Map</Nav.Link>
