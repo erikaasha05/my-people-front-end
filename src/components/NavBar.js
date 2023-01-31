@@ -7,7 +7,7 @@ import logo from "../my_people_logo.png";
 import NewContactForm from "./NewContactForm";
 
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [showModal, setShowModal] = useState(false)
 
   const handleClose = () => {
@@ -38,7 +38,7 @@ const NavBar = () => {
             <Modal size="lg" show={showModal} onHide={handleClose} centered>
               <Modal.Header closeButton>Add a New Contact</Modal.Header>
               <Modal.Body>
-                <NewContactForm />
+                <NewContactForm handleNewContactSubmit={props.handleNewContactSubmit} />
               </Modal.Body>
             </Modal>
             <Nav.Link href="#reminders">Reminders</Nav.Link>

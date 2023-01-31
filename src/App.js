@@ -25,128 +25,128 @@ const reminderDataTest = [
   },
 ];
 
-const contactDataTest = [
-  {
-    contactId: 1,
-    firstName: "Erika",
-    lastName: "Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 2,
-    firstName: "Huey",
-    lastName: "Anderson-Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 1,
-    firstName: "Erika",
-    lastName: "Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 2,
-    firstName: "Huey",
-    lastName: "Anderson-Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 1,
-    firstName: "Erika",
-    lastName: "Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 2,
-    firstName: "Huey",
-    lastName: "Anderson-Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 1,
-    firstName: "Erika",
-    lastName: "Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 2,
-    firstName: "Huey",
-    lastName: "Anderson-Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 1,
-    firstName: "Erika",
-    lastName: "Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-  {
-    contactId: 2,
-    firstName: "Huey",
-    lastName: "Anderson-Sha",
-    number: 7325128558,
-    email: "erikaasha05@gmail.com",
-    address: "50 Dey St.",
-    birthday: "12/05/1993",
-    relationships: ["Ian's Fiancee"],
-    notes: "notes will be here",
-    tags: ["tag 1"],
-  },
-];
+// const contactDataTest = [
+//   {
+//     contactId: 1,
+//     firstName: "Erika",
+//     lastName: "Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 2,
+//     firstName: "Huey",
+//     lastName: "Anderson-Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 1,
+//     firstName: "Erika",
+//     lastName: "Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 2,
+//     firstName: "Huey",
+//     lastName: "Anderson-Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 1,
+//     firstName: "Erika",
+//     lastName: "Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 2,
+//     firstName: "Huey",
+//     lastName: "Anderson-Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 1,
+//     firstName: "Erika",
+//     lastName: "Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 2,
+//     firstName: "Huey",
+//     lastName: "Anderson-Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 1,
+//     firstName: "Erika",
+//     lastName: "Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+//   {
+//     contactId: 2,
+//     firstName: "Huey",
+//     lastName: "Anderson-Sha",
+//     number: 7325128558,
+//     email: "erikaasha05@gmail.com",
+//     address: "50 Dey St.",
+//     birthday: "12/05/1993",
+//     relationships: ["Ian's Fiancee"],
+//     notes: "notes will be here",
+//     tags: ["tag 1"],
+//   },
+// ];
 
 const oneContactTest = {
   contactId: 1,
@@ -174,15 +174,15 @@ const convertFromContactApi = (apiContact) => {
   return newContact;
 };
 
-const convertFromReminderApi = (apiReminder) => {
-  const { reminder_id, contact_id, ...rest } = apiReminder;
-  const newReminder = {
-    reminderId: reminder_id,
-    contactId: contact_id,
-    ...rest,
-  };
-  return newReminder;
-};
+// const convertFromReminderApi = (apiReminder) => {
+//   const { reminder_id, contact_id, ...rest } = apiReminder;
+//   const newReminder = {
+//     reminderId: reminder_id,
+//     contactId: contact_id,
+//     ...rest,
+//   };
+//   return newReminder;
+// };
 
 const getAllContactsApi = () => {
   return axios
@@ -190,21 +190,19 @@ const getAllContactsApi = () => {
     .then((response) => {
       return response.data.map(convertFromContactApi);
     })
-    .catch((err) => {
-      console.log(`error from get contact api ${err}`);
-    });
+    .catch((err) => console.log(`error from get contact api ${err}`));
 };
 
-const getRemindersForContactApi = (contactId) => {
-  return axios
-    .get(`${kBaseUrl}/contacts/${contactId}/reminders`)
-    .then((response) => {
-      return response.data.reminders.map(convertFromReminderApi);
-    })
-    .catch((err) => {
-      console.log(`from get reminders for a contact api ${err}`);
-    });
-};
+// const getRemindersForContactApi = (contactId) => {
+//   return axios
+//     .get(`${kBaseUrl}/contacts/${contactId}/reminders`)
+//     .then((response) => {
+//       return response.data.reminders.map(convertFromReminderApi);
+//     })
+//     .catch((err) => {
+//       console.log(`from get reminders for a contact api ${err}`);
+//     });
+// };
 
 const createContactApi = (newContactData) => {
   return axios
@@ -212,9 +210,7 @@ const createContactApi = (newContactData) => {
     .then((response) => {
       return convertFromContactApi(response.data);
     })
-    .catch((err) => {
-      console.log(`create contact api ${err}`);
-    });
+    .catch((err) => console.log(`create contact api ${err}`));
 };
 
 const deleteContactApi = (contactId) => {
@@ -223,25 +219,22 @@ const deleteContactApi = (contactId) => {
     .then((response) => {
       return response.data.details;
     })
-    .catch((err) => {
-      console.log(`delete contact api ${err}`);
-    });
+    .catch((err) => console.log(`delete contact api ${err}`));
 };
 
-const deleteReminderApi = (reminderId) => {
-  return axios
-    .delete(`${kBaseUrl}/reminders/${reminderId}`)
-    .then((response) => {
-      return response.data.details;
-    })
-    .catch((err) => {
-      console.log(`delete reminder api ${err}`);
-    });
-};
+// const deleteReminderApi = (reminderId) => {
+//   return axios
+//     .delete(`${kBaseUrl}/reminders/${reminderId}`)
+//     .then((response) => {
+//       return response.data.details;
+//     })
+//     .catch((err) => {
+//       console.log(`delete reminder api ${err}`);
+//     });
+// };
 
 function App() {
   const [contactData, setContactData] = useState([]);
-  console.log(kBaseUrl);
 
   const getAllContacts = () =>{
     return getAllContactsApi().then((contacts) => {
@@ -253,10 +246,24 @@ function App() {
     getAllContacts();
   }, []);
 
+  const deleteContact = (contactId) => {
+    return deleteContactApi(contactId).then((contactResult) => {
+      return getAllContacts();
+    });
+  };
+
+  const handleNewContactSubmit = (data) => {
+    createContactApi(data)
+      .then((newContact) => {
+        setContactData([...contactData, newContact]);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <section>
       <header className="App-header">
-        <NavBar />
+        <NavBar handleNewContactSubmit={handleNewContactSubmit} />
       </header>
       <Container className="mt-4">
         <Row className="h-100">
@@ -268,7 +275,7 @@ function App() {
           </Col>
           <Col>
             <ReminderList reminders={reminderDataTest} />
-            <Contact contactInfo={oneContactTest} />
+            <Contact contactInfo={oneContactTest} onDeleteContact={deleteContact} />
           </Col>
         </Row>
       </Container>

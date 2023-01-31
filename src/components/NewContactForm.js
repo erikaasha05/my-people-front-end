@@ -32,12 +32,12 @@ const formatNumber = (value) => {
   }
 };
 
-const NewContactForm = () => {
+const NewContactForm = (props) => {
   const [contactData, setContactData] = useState(kDefaultFormData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // props.handleContactSubmit(contactData);
+    props.handleNewContactSubmit(contactData);
     setContactData(kDefaultFormData);
   };
 
