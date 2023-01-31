@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
 import Contact from "./components/Contact";
 import ContactList from "./components/ContactList";
@@ -73,11 +73,21 @@ function App() {
       <header className="App-header">
           <NavBar />
       </header>
-      <Container>
-        <ContactList contacts={contactData}/>
-        <Contact contactInfo={oneContact}/>
-        <ReminderList reminders={reminderData}/>
+      <Container className="mt-4">
+        <Row>
+          <Col md={3}>
+          <ContactList contacts={contactData}/>
+          </Col>
+          <Col>
+          <ReminderList reminders={reminderData}/>
+          <Contact contactInfo={oneContact}/>
+          </Col>
+        </Row>
+        
       </Container>
+      <footer>
+
+      </footer>
     </section>
   );
 }

@@ -1,10 +1,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import NewReminderForm from "./NewReminderForm";
+
 
 const Contact = (props) => {
   return (
-    <div>
+    <Col>
       <h1>{props.contactInfo.firstName}</h1>
       <h3>{props.contactInfo.lastName}</h3>
       <p>📱 Phone Number: {props.contactInfo.number}</p>
@@ -15,7 +17,7 @@ const Contact = (props) => {
       {props.contactInfo.email ? 
         <Button>Email {props.contactInfo.firstName}</Button> : null}
       <NewReminderForm />
-    </div>
+    </Col>
   );
 };
 
