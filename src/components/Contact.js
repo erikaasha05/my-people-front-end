@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row"
+import Row from "react-bootstrap/Row";
+import Modal from "react-bootstrap/Modal";
 import NewReminderForm from "./NewReminderForm";
+import UpdateContactForm from "./UpdateContactForm";
 import "./Contact.css";
 
 
 const Contact = (props) => {
+  const [showModal, setShowModal] = useState(false)
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  const handleShow = () => {
+    setShowModal(true);
+  };
+
   return (
     <Row>
       <Col className="ms-3">
@@ -24,7 +36,16 @@ const Contact = (props) => {
       <p>🗒️ Notes: {props.contactData.notes}</p>
       </Col>
       <Col xs={1}>
-      <Button size="sm">Edit</Button>
+      <Button size="sm" onClick={handleShow}>Edit</Button>
+      <Modal size="lg" show={showModal} onHide={handleClose} centered>
+        <Modal.Header closeButton>Add a New Contact</Modal.Header>
+        <Modal.Body>
+          <UpdateContactForm contactData={props.contactData} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClose}>Close</Button>
+        </Modal.Footer>
+      </Modal>
       <Button size="sm" onClick={() => props.onDeleteContact(props.contactData.contactId)}>🗑️</Button>
       </Col>
     </Row>

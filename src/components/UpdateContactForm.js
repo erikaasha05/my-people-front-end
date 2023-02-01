@@ -3,25 +3,14 @@ import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const kDefaultFormData = {
-  firstName: null,
-  lastName: null,
-  number: null,
-  email: null,
-  address: null,
-  birthday: null,
-  relationships: null,
-  notes: null,
-  tags: null,
-};
 
-const UpdateContactForm = () => {
-  const [contactData, setContactData] = useState(kDefaultFormData);
+const UpdateContactForm = (props) => {
+  const [contactData, setContactData] = useState(props.contactData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // props.handleContactSubmit(contactData);
-    setContactData(kDefaultFormData);
+    setContactData(props.contactData);
   };
 
   const handleNewContactData = (event) => {
@@ -136,7 +125,7 @@ const UpdateContactForm = () => {
           placeholder="Select Tags"
         />
       </Form.Group>
-      <Button type="submit">Add Contact</Button>
+      <Button type="submit">Update Contact</Button>
     </Form>
   );
 };
