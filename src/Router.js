@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 export const routes = [
   {
     element: <App />,
-    path: "/",
+    path: "/dashboard",
   },
   {
     element: <Login />,

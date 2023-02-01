@@ -207,7 +207,6 @@ const getOneContactApi = (contactId) => {
   return axios
     .get(`${kBaseUrl}/contacts/${contactId}`)
     .then((response) => {
-      console.log(convertFromContactApi(response.data));
       return convertFromContactApi(response.data);
     })
     .catch((err) => console.log(`error from get one contact api ${err}`));
@@ -242,6 +241,15 @@ const createContactApi = (newContactData) => {
     .catch((err) => console.log(`create contact api ${err}`));
 };
 
+const updateContactApi = (updatedContactData, contactId) => {
+  return axios
+    .put(`${kBaseUrl}/contacts/${contactId}`, updatedContactData)
+    .then((response) => {
+      return convertFromContactApi(response.data.contact);
+    })
+    .catch((err) => console.log(`update contact api ${err}`));
+};
+
 const deleteContactApi = (contactId) => {
   return axios
     .delete(`${kBaseUrl}/contacts/${contactId}`)
@@ -254,9 +262,9 @@ const deleteContactApi = (contactId) => {
 const createReminderApi = (newReminderData) => {
   return axios
     .post(`${kBaseUrl}/reminders`, newReminderData)
-    .then((response => {
+    .then((response) => {
       return response.data;
-    }))
+    })
     .catch((err) => console.log(`create a reminder api ${err}`));
 };
 
@@ -283,7 +291,7 @@ function App() {
   };
 
   const getAllReminders = () => {
-    return getAllRemindersApi().then((reminders) =>{
+    return getAllRemindersApi().then((reminders) => {
       setReminderData(reminders);
     });
   };
@@ -315,6 +323,16 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const handleUpdatedContactSubmit = (data, id) => {
+    const apiUpdatedContact = convertToContactApi(data);
+    updateContactApi(apiUpdatedContact, id)
+      .then((updatedContact) => {
+        getAllContacts();
+        setSelectedContact(updatedContact);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const handleReminderSubmit = (data) => {
     createReminderApi(data)
       .then((newReminder) => {
@@ -342,11 +360,15 @@ function App() {
             <ContactList contacts={contactData} onSelect={onContactSelect} />
           </Col>
           <Col>
-            <ReminderList reminders={reminderData} onDeleteReminder={deleteReminder} />
+            <ReminderList
+              reminders={reminderData}
+              onDeleteReminder={deleteReminder}
+            />
             <Contact
               contactData={selectedContact}
               onDeleteContact={deleteContact}
               onReminderSubmit={handleReminderSubmit}
+              handleUpdateContactSubmit={handleUpdatedContactSubmit}
             />
           </Col>
         </Row>
