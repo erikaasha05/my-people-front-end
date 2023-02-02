@@ -17,7 +17,7 @@ const ReminderList = (props) => {
   });
   return (
     <div>
-      <NewReminderForm />
+      <NewReminderForm onReminderSubmit={props.onReminderSubmit} />
       <ListGroup>{reminders}</ListGroup>
     </div>
   );

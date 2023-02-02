@@ -3,6 +3,7 @@ import App from "./App";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import FourOhFour from "./pages/404";
+import Map from "./components/Map";
 
 export const routes = [
   {
@@ -25,4 +26,8 @@ export const routes = [
     path: "*",
     element: <Navigate to="/404" replace />,
   },
+  {
+    element: <Map />,
+    path: "/map"
+  }
 ];

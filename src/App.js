@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
+// import Map from "./components/Map";
 
 // const reminderDataTest = [
 //   {
@@ -363,6 +364,7 @@ function App() {
             <ReminderList
               reminders={reminderData}
               onDeleteReminder={deleteReminder}
+              onReminderSubmit={handleReminderSubmit}
             />
             <Contact
               contactData={selectedContact}
