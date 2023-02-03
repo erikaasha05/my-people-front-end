@@ -93,7 +93,7 @@ const NewContactForm = (props) => {
           value={contactData.number}
           onChange={handleNewContactData}
           required={"true"}
-          placeholder="Enter Phone Number"
+          placeholder="(123) 456-7890"
         />
       </Form.Group>
       <Form.Group className="mb-3">
