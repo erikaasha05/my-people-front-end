@@ -64,7 +64,7 @@ const UpdateContactForm = (props) => {
         <Form.Control
           type="email"
           id="email"
-          name="femail"
+          name="email"
           value={contactData.email}
           onChange={handleNewContactData}
           placeholder="Enter Email"

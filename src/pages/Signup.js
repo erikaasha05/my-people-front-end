@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -5,8 +7,48 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import logo from "../my_people_logo.png";
+// import { data } from "jquery";
+
+const kDefaultFormData = {
+  username: "",
+  password: "",
+};
+
+const registerUserApi = (newUserData) => {
+  return axios
+    .post(`${process.env.REACT_APP_BACKEND_URL}/users`, newUserData)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => console.log(`register user api ${err}`));
+};
 
 const Signup = () => {
+  const [signupForm, setSignupForm] = useState(kDefaultFormData);
+  const [message, setMessage] = useState("");
+
+  const handleNewUserSubmit = (newUserDetails) => {
+    registerUserApi(newUserDetails).then((response) => {
+      console.log(response);
+      setMessage(response);
+      return response;
+    });
+  };
+
+const handleRegister = (event) => {
+  event.preventDefault();
+  handleNewUserSubmit(signupForm);
+  setSignupForm(kDefaultFormData);
+};
+
+const handleNewUserData = (event) =>{
+  const dataValue = event.target.value;
+  const dataField = event.target.name;
+
+  const newUser = { ...signupForm, [dataField]: dataValue };
+  setSignupForm(newUser);
+};
+
   return (
     <Container className="my-5">
       <Card>
@@ -21,17 +63,33 @@ const Signup = () => {
           </Col>
           <Col>
             <Card.Body>
-              <Form>
-                <Form.Group className="mb-4" controlId="formBasicEmail">
+              <Form onSubmit={handleRegister}>
+                <Form.Group className="mb-4">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Enter username" />
+                  <Form.Control
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={signupForm.username}
+                    onChange={handleNewUserData}
+                    required="true"
+                    placeholder="Enter username"
+                  />
                   {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                   </Form.Text> */}
                 </Form.Group>
-                <Form.Group className="mb-4" controlId="formBasicPassword">
+                <Form.Group className="mb-4">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control
+                    type="text"
+                    id="password"
+                    name="password"
+                    value={signupForm.password}
+                    onChange={handleNewUserData}
+                    required="true"
+                    placeholder="Password"
+                  />
                 </Form.Group>
                 {/* <Form.Group className="mb-4" controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Check me out" />
@@ -39,10 +97,16 @@ const Signup = () => {
                 <Button variant="primary" type="submit">
                   Register
                 </Button>
+                <Form.Group className="mt-2">
+                  <Form.Text className="text-muted">
+                    {message}
+                  </Form.Text>
+                </Form.Group>
               </Form>
-              <div>
+              <div className="mt-2">
                 Already have an account? <a href="/login">Sign In</a>
               </div>
+
             </Card.Body>
           </Col>
         </Row>

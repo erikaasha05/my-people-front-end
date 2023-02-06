@@ -66,6 +66,7 @@ const NavBar = (props) => {
                 <Button onClick={handleMapClose}>Close</Button>
               </Modal.Footer>
             </Modal>
+            <Nav.Link href="/login" onClick={() => props.onLogout()}>Log Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

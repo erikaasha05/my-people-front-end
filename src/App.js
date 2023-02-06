@@ -280,6 +280,16 @@ const deleteReminderApi = (reminderId) => {
     });
 };
 
+const logUserOutApi = () => {
+  return axios
+    .post(`${kBaseUrl}/logout`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => console.log(`log user out api ${err}`));
+};
+
+
 function App() {
   const [contactData, setContactData] = useState([]);
   const [selectedContact, setSelectedContact] = useState({});
@@ -347,10 +357,18 @@ function App() {
     setSelectedContact(contact);
   };
 
+  const onLogout = () => {
+    return logUserOutApi()
+      .then((message) => {
+        console.log(message.msg);
+        return message.msg;
+      })
+  }
+
   return (
     <section>
       <header className="App-header">
-        <NavBar handleNewContactSubmit={handleNewContactSubmit} />
+        <NavBar handleNewContactSubmit={handleNewContactSubmit} onLogout={onLogout} />
       </header>
       <Container className="mt-4">
         <Row className="h-100">
