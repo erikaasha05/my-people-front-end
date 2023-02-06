@@ -7,7 +7,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import logo from "../my_people_logo.png";
-import useToken from "./components/useToken";
+import useToken from "../components/useToken";
+import "./Login.css";
 
 const kDefaultFormData = {
   username: "",
@@ -25,12 +26,13 @@ const logUserInApi = (userData) => {
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState(kDefaultFormData);
-  const { setToken } = useToken();
+  const { setToken, ...rest } = useToken();
+  // const { token, removeToken, setToken } = useToken();
 
   const handleLoginSubmit = (userDetails) => {
     logUserInApi(userDetails).then((response) => {
-      console.log(response);
-      setToken(response.data.access_token);
+      console.log(response.access_token);
+      setToken(response.access_token);
       return response;
     });
   };
@@ -50,7 +52,7 @@ const Login = () => {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5 login-container">
       <Card>
         <Row className="g-0 d-flex align-items-center">
           <Col md={5}>
@@ -63,6 +65,7 @@ const Login = () => {
           </Col>
           <Col>
             <Card.Body>
+              <h1>Log In</h1>
               <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-4">
                   <Form.Label>Username</Form.Label>
@@ -93,7 +96,7 @@ const Login = () => {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                  Sign In
+                  Log In
                 </Button>
               </Form>
               <div className="mt-2">

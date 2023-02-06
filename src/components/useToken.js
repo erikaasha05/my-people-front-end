@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const getToken = () => {
-  const userToken = localStorage.getIten("token");
+  const userToken = localStorage.getItem("token");
   return userToken && userToken;
 };
 
