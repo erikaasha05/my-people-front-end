@@ -7,6 +7,10 @@ import Map from "./components/Map";
 
 export const routes = [
   {
+    element: <Login />,
+    path: "/",
+  },
+  {
     element: <App />,
     path: "/dashboard",
   },

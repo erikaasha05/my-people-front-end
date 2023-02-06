@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import logo from "../my_people_logo.png";
-// import logUserInApi from "../App.js";
+import useToken from "./components/useToken";
 
 const kDefaultFormData = {
   username: "",
@@ -25,11 +25,13 @@ const logUserInApi = (userData) => {
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState(kDefaultFormData);
+  const { setToken } = useToken();
 
   const handleLoginSubmit = (userDetails) => {
-    logUserInApi(userDetails).then((data) => {
-      console.log(data);
-      return data
+    logUserInApi(userDetails).then((response) => {
+      console.log(response);
+      setToken(response.data.access_token);
+      return response;
     });
   };
 

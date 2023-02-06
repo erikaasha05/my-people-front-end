@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
+import useToken from "./components/useToken";
 // import Map from "./components/Map";
 
 // const reminderDataTest = [
@@ -295,6 +296,8 @@ function App() {
   const [selectedContact, setSelectedContact] = useState({});
   const [reminderData, setReminderData] = useState([]);
 
+  const { token, removeToken, setToken } = useToken();
+
   const getAllContacts = () => {
     return getAllContactsApi().then((contacts) => {
       setContactData(contacts);
@@ -360,6 +363,7 @@ function App() {
   const onLogout = () => {
     return logUserOutApi()
       .then((message) => {
+        removeToken();
         console.log(message.msg);
         return message.msg;
       })
