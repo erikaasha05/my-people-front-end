@@ -62,13 +62,13 @@ const getAllRemindersApi = (token) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      console.log(response.data.reminders);
+      console.log(`response.data.reminders ${response.data.reminders.map(convertFromReminderApi)}`);
       return response.data.reminders.map(convertFromReminderApi);
     })
     .catch((err) => console.log(`error from get reminders api ${err}`));
 };
 
-// refactored to check for valide token
+// refactored to check for valid token
 const getOneContactApi = (contactId, token) => {
   return axios
     .get(`${kBaseUrl}/contacts/${contactId}`, {
@@ -137,10 +137,14 @@ const deleteContactApi = (contactId, token) => {
     .catch((err) => console.log(`delete contact api ${err}`));
 };
 
-const createReminderApi = (newReminderData) => {
+// refactored to check for valid token
+const createReminderApi = (contactId, newReminderData, token) => {
   return axios
-    .post(`${kBaseUrl}/reminders`, newReminderData)
+    .post(`${kBaseUrl}/contacts/${contactId}/reminders`, newReminderData, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
+      console.log(`create reminder api ${response.data}`);
       return response.data;
     })
     .catch((err) => console.log(`create a reminder api ${err}`));
@@ -184,7 +188,9 @@ function App() {
 
   const getAllReminders = (token) => {
     return getAllRemindersApi(token).then((reminders) => {
-      setReminderData(reminders);
+      const sortedReminders = reminders.sort((a, b) => (a["date"] < b["date"] ? -1 : 1));
+      console.log(`sorted reminders ${sortedReminders}`);
+      setReminderData(sortedReminders);
     });
   };
 
@@ -225,10 +231,11 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const handleReminderSubmit = (data) => {
-    createReminderApi(data)
+  const handleReminderSubmit = (contactId, data, token) => {
+    createReminderApi(contactId, data, token)
       .then((newReminder) => {
         setReminderData([...reminderData, newReminder]);
+        getAllReminders(token);
       })
       .catch((err) => console.log(err));
   };

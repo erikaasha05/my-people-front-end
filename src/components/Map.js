@@ -42,6 +42,9 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const kGoogleApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
+// need props for all contacts
+// map over contacts
+
 const Map = () => {
 
   const mapStyles = {

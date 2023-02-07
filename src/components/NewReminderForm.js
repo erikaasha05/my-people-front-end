@@ -25,7 +25,7 @@ const NewReminderForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onReminderSubmit(reminderData);
+    props.onReminderSubmit(props.contactData.contactId, reminderData, props.token);
     setReminderData(kDefaultFormData);
   };
 
@@ -70,7 +70,7 @@ const NewReminderForm = (props) => {
                 placeholder="Date"
               />
             </Form.Group>
-            <Button type="submit" onClick={handleClose}>
+            <Button type="submit">
               Add Reminder
             </Button>
           </Form>
