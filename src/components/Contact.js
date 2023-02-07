@@ -47,6 +47,7 @@ const Contact = (props) => {
             <UpdateContactForm
               contactData={props.contactData}
               handleUpdateContactSubmit={props.handleUpdateContactSubmit}
+              token={props.token}
             />
           </Modal.Body>
           <Modal.Footer>
@@ -55,7 +56,7 @@ const Contact = (props) => {
         </Modal>
         <Button
           size="sm"
-          onClick={() => props.onDeleteContact(props.contactData.contactId)}
+          onClick={() => props.onDeleteContact(props.contactData.contactId, props.token)}
         >
           🗑️
         </Button>

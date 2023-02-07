@@ -9,7 +9,7 @@ const UpdateContactForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleUpdateContactSubmit(contactData, props.contactData.contactId);
+    props.handleUpdateContactSubmit(contactData, props.contactData.contactId, props.token);
     setContactData(props.contactData);
   };
 

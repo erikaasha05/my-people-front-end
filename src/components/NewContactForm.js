@@ -37,7 +37,7 @@ const NewContactForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleNewContactSubmit(contactData);
+    props.handleNewContactSubmit(contactData, props.token);
     setContactData(kDefaultFormData);
   };
 

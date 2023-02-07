@@ -45,11 +45,11 @@ const NavBar = (props) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link onClick={handleContactShow}>Add Contact</Nav.Link>
+            <Nav.Link onClick={handleContactShow} >Add Contact</Nav.Link>
             <Modal size="lg" show={showAddContactModal} onHide={handleContactClose} centered>
               <Modal.Header closeButton>Add a New Contact</Modal.Header>
               <Modal.Body>
-                <NewContactForm handleNewContactSubmit={props.handleNewContactSubmit} />
+                <NewContactForm handleNewContactSubmit={props.handleNewContactSubmit} token={props.token} />
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={handleContactClose}>Close</Button>

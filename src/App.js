@@ -7,6 +7,7 @@ import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
 import useToken from "./components/useToken";
+import Login from "./pages/Login";
 // import Map from "./components/Map";
 
 const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
@@ -45,30 +46,49 @@ const convertFromReminderApi = (apiReminder) => {
 // refactored to get all contacts for the user signed in
 const getAllContactsApi = (token) => {
   return axios
-    .get(`${kBaseUrl}/users/contacts`, {headers: {"Authorization": `Bearer ${token}`}})
+    .get(`${kBaseUrl}/users/contacts`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
+      console.log(response.data);
       return response.data.contacts.map(convertFromContactApi);
     })
     .catch((err) => console.log(`error from get contact api ${err}`));
 };
 
-const getOneContactApi = (contactId) => {
+const getAllRemindersApi = (token) => {
   return axios
-    .get(`${kBaseUrl}/contacts/${contactId}`)
+    .get(`${kBaseUrl}/users/contacts`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      console.log(response.data.reminders);
+      return response.data.reminders.map(convertFromReminderApi);
+    })
+    .catch((err) => console.log(`error from get reminders api ${err}`));
+};
+
+// refactored to check for valide token
+const getOneContactApi = (contactId, token) => {
+  return axios
+    .get(`${kBaseUrl}/contacts/${contactId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
       return convertFromContactApi(response.data);
     })
     .catch((err) => console.log(`error from get one contact api ${err}`));
 };
 
-const getAllRemindersApi = () => {
-  return axios
-    .get(`${kBaseUrl}/reminders`)
-    .then((response) => {
-      return response.data.map(convertFromReminderApi);
-    })
-    .catch((err) => console.log(`error from get reminders api ${err}`));
-};
+// get all reminders in db
+// const getAllRemindersApi = () => {
+//   return axios
+//     .get(`${kBaseUrl}/reminders`)
+//     .then((response) => {
+//       return response.data.map(convertFromReminderApi);
+//     })
+//     .catch((err) => console.log(`error from get reminders api ${err}`));
+// };
 
 // const getRemindersForContactApi = (contactId) => {
 //   return axios
@@ -81,27 +101,36 @@ const getAllRemindersApi = () => {
 //     });
 // };
 
-const createContactApi = (newContactData) => {
+// refactored to create a contact for the user logged in
+const createContactApi = (newContactData, token) => {
   return axios
-    .post(`${kBaseUrl}/contacts`, newContactData)
+    .post(`${kBaseUrl}/contacts`, newContactData, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
       return convertFromContactApi(response.data);
     })
     .catch((err) => console.log(`create contact api ${err}`));
 };
 
-const updateContactApi = (updatedContactData, contactId) => {
+// refactored to update a contact for the user logged in
+const updateContactApi = (updatedContactData, contactId, token) => {
   return axios
-    .put(`${kBaseUrl}/contacts/${contactId}`, updatedContactData)
+    .put(`${kBaseUrl}/contacts/${contactId}`, updatedContactData, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
       return convertFromContactApi(response.data.contact);
     })
     .catch((err) => console.log(`update contact api ${err}`));
 };
 
-const deleteContactApi = (contactId) => {
+// refactored to delete contact for the user logged in
+const deleteContactApi = (contactId, token) => {
   return axios
-    .delete(`${kBaseUrl}/contacts/${contactId}`)
+    .delete(`${kBaseUrl}/contacts/${contactId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
       return response.data.details;
     })
@@ -117,9 +146,12 @@ const createReminderApi = (newReminderData) => {
     .catch((err) => console.log(`create a reminder api ${err}`));
 };
 
-const deleteReminderApi = (reminderId) => {
+// refactored to check for valid token
+const deleteReminderApi = (reminderId, token) => {
   return axios
-    .delete(`${kBaseUrl}/reminders/${reminderId}`)
+    .delete(`${kBaseUrl}/reminders/${reminderId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => {
       return response.data.details;
     })
@@ -137,7 +169,6 @@ const logUserOutApi = () => {
     .catch((err) => console.log(`log user out api ${err}`));
 };
 
-
 function App() {
   const [contactData, setContactData] = useState([]);
   const [selectedContact, setSelectedContact] = useState({});
@@ -148,48 +179,47 @@ function App() {
   const getAllContacts = (token) => {
     return getAllContactsApi(token).then((contacts) => {
       setContactData(contacts);
-      console.log(contactData);
     });
   };
 
-  const getAllReminders = () => {
-    return getAllRemindersApi().then((reminders) => {
+  const getAllReminders = (token) => {
+    return getAllRemindersApi(token).then((reminders) => {
       setReminderData(reminders);
     });
   };
 
   useEffect(() => {
     getAllContacts(token);
-    getAllReminders();
+    getAllReminders(token);
   }, []);
 
-  const deleteContact = (contactId) => {
-    return deleteContactApi(contactId).then((contactResult) => {
+  const deleteContact = (contactId, token) => {
+    return deleteContactApi(contactId, token).then((contactResult) => {
       setSelectedContact({});
-      getAllContacts();
+      getAllContacts(token);
     });
   };
 
-  const deleteReminder = (reminderId) => {
-    return deleteReminderApi(reminderId).then((reminderResult) => {
-      getAllReminders();
+  const deleteReminder = (reminderId, token) => {
+    return deleteReminderApi(reminderId, token).then((reminderResult) => {
+      getAllReminders(token);
     });
   };
 
-  const handleNewContactSubmit = (data) => {
+  const handleNewContactSubmit = (data, token) => {
     const apiContactData = convertToContactApi(data);
-    createContactApi(apiContactData)
+    createContactApi(apiContactData, token)
       .then((newContact) => {
         setContactData([...contactData, newContact]);
       })
       .catch((err) => console.log(err));
   };
 
-  const handleUpdatedContactSubmit = (data, id) => {
+  const handleUpdatedContactSubmit = (data, id, token) => {
     const apiUpdatedContact = convertToContactApi(data);
-    updateContactApi(apiUpdatedContact, id)
+    updateContactApi(apiUpdatedContact, id, token)
       .then((updatedContact) => {
-        getAllContacts();
+        getAllContacts(token);
         setSelectedContact(updatedContact);
       })
       .catch((err) => console.log(err));
@@ -203,48 +233,63 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const onContactSelect = async (contactId) => {
-    const contact = await getOneContactApi(contactId);
+  const onContactSelect = async (contactId, token) => {
+    const contact = await getOneContactApi(contactId, token);
     setSelectedContact(contact);
   };
 
   const onLogout = () => {
-    return logUserOutApi()
-      .then((message) => {
-        removeToken();
-        console.log(message.msg);
-        return message.msg;
-      })
-  }
+    return logUserOutApi().then((message) => {
+      removeToken();
+      console.log(message.msg);
+      return message.msg;
+    });
+  };
 
   return (
     <section>
-      <header className="App-header">
-        <NavBar handleNewContactSubmit={handleNewContactSubmit} onLogout={onLogout} />
-      </header>
-      <Container className="mt-4">
-        <Row className="h-100">
-          <Col
-            md={3}
-            className="contact-container scrollbar scrollbar-near-moon"
-          >
-            <ContactList contacts={contactData} onSelect={onContactSelect} />
-          </Col>
-          <Col>
-            <ReminderList
-              reminders={reminderData}
-              onDeleteReminder={deleteReminder}
-              onReminderSubmit={handleReminderSubmit}
+      {!token && token !== "" && token !== undefined ? (
+        <Login />
+      ) : (
+        <div>
+          <header className="App-header">
+            <NavBar
+              handleNewContactSubmit={handleNewContactSubmit}
+              onLogout={onLogout}
+              token={token}
             />
-            <Contact
-              contactData={selectedContact}
-              onDeleteContact={deleteContact}
-              onReminderSubmit={handleReminderSubmit}
-              handleUpdateContactSubmit={handleUpdatedContactSubmit}
-            />
-          </Col>
-        </Row>
-      </Container>
+          </header>
+          <Container className="mt-4">
+            <Row className="h-100">
+              <Col
+                md={3}
+                className="contact-container scrollbar scrollbar-near-moon"
+              >
+                <ContactList
+                  contacts={contactData}
+                  onSelect={onContactSelect}
+                  token={token}
+                />
+              </Col>
+              <Col>
+                <ReminderList
+                  reminders={reminderData}
+                  onDeleteReminder={deleteReminder}
+                  onReminderSubmit={handleReminderSubmit}
+                  token={token}
+                />
+                <Contact
+                  contactData={selectedContact}
+                  onDeleteContact={deleteContact}
+                  onReminderSubmit={handleReminderSubmit}
+                  handleUpdateContactSubmit={handleUpdatedContactSubmit}
+                  token={token}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      )}
       <footer></footer>
     </section>
   );
