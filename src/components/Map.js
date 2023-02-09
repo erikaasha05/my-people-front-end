@@ -1,95 +1,142 @@
-// import React from "react";
-// import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import React, { useState, useEffect } from "react";
+import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
+import Geocode from "react-geocode";
 
-// const containerStyle = {
-//   width: "100vh",
-//   height: "100%"
-// };
+const kGoogleApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-// const center = {
-//   lat: 38.498,
-//   lng: -98.698,
-// };
+Geocode.setApiKey(kGoogleApiKey);
+Geocode.setLanguage("en");
+Geocode.enableDebug();
 
-// const Map = () => {
-//   const { isLoaded } = useJsApiLoader({
-//     id: 'google-map-script',
-//     googleMapsApiKey: '',
-//   });
+const getLatLng = (address) => {
+  return Geocode.fromAddress(address).then(
+    (response) => {
+      const { lat, lng } = response.results[0].geometry.location;
+      console.log(response.results);
+      console.log(`location ${lat} lng:${lng}`);
+      // return { lat: {lat}, lng: {lng} };
+      const latLon = {
+        lat: lat,
+        lng: lng,
+      };
+      // console.log(`should be object ${latLon}`);
+      // console.log(latLon);
+      return latLon;
+    },
+    (err) => console.log(`getLatLng ${err}`)
+  );
+};
 
-//   if (!isLoaded) return <div>Loading...</div>;
-//   return (
-//     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-//       <Marker lat={59} lng={30} />
-//     </GoogleMap>
-//   );
+const Map = (props) => {
+  const [markerData, setMarkerData] = useState("");
 
-//    // return (
-//   //   <div>
-//   //     <LoadScript googleMapsApiKey="">
-//   //       <GoogleMap MapContainerStyle={containerStyle} center={center} zoom={10}>
-//           // <Marker lat={59} lng={30} />
-//   //       </GoogleMap>
-//   //     </LoadScript>
-//   //   </div>
-//   // );
-// };
+  const getMarkerData = () => {
+    if (props.contactData.address) {
+      getLatLng(props.contactData.address)
+        .then((location) => {
+          console.log(location);
+          setMarkerData(location);
+        })
+        .catch((err) => console.log(err));
+    }
+    // const latLng = props.contacts.map((contact) => {
+    //   getLatLng(contact.address).then((result) => {
+    //     const toJson = result.json()
+    //     console.log(`get marker data ${toJson}`)
+    //     return result.json();
+    // });
+    // const latLng = props.contacts.map((contact) => {
+    //   return getLatLng(contact.address).then((result) => {
+    //     console.log(`get Marker Data ${result}`);
+    //     console.log(result);
+    //     // console.log(result)
+    //     return result;
+    //   });
+    // });
+    // const latLng = props.contacts.map((contact) => {
+    //   return getLatLng(contact.address)
+    //     .then((result) => {
+    //       console.log(`get Marker Data ${result}`);
+    //       return result;
+    // }
+    // // .then((data) => {
+    // //   console.log(`get Marker Data ${data}`);
+    // //   return data;
+    // // });
+    // );
 
-// export default Map;
+    // setMarkerData([...markerData, latLng]);
+    // console.log(`latlng: ${latLng}`);
+    // console.log("latLng" + latLng);
+    // console.log(`markerData ${markerData}`);
+    // console.log(markerData)
 
-import React from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+    // const listOfLatLon = [];
 
-const kGoogleApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    // for (let i = 0; i < props.contacts.length; i++) {
+    //   // console.log(props.contacts[i].address)
+    //   getLatLng(props.contacts[i].address).then((result) => {
+    //     console.log(`result ${result}`);
+    //     console.log(result);
+    //     listOfLatLon.append(result)
+    //   })
+    //   // if (props.contacts[i].address) {
+    //   //   return getLatLng(props.contact[i].address).then((result) => {
+    //   //     console.log(`result ${result}`)
+    //   //     listOfLatLon.append(result);
+    //   //   });
+    //   // }
+    // }
+    // console.log(`list ${listOfLatLon}`);
+    // return listOfLatLon;
+  };
 
-// need props for all contacts
-// map over contacts
+  // const markerInfo = () => {
+  //   const contactInfo = props.contacts.map((contact) => {
+  //     const latLng = getLatLng(contact.address);
+  //     console.log(`result of getlatlng ${latLng}`);
+  //     console.log({ ...latLng, name: contact.firstName });
+  //     return { ...latLng, name: contact.firstName };
+  //   });
 
-const Map = () => {
+  //   console.log(`contactData ${contactInfo}`);
+  //   return contactInfo;
+  // };
+
+  useEffect(() => {
+    getMarkerData();
+  }, []);
 
   const mapStyles = {
-    height: "100vh",
-    width: "100%"};
+    height: "35vh",
+    width: "40%",
+  };
 
-  const defaultCenter = {
-    lat: 38.498, lng: -97.698
-  }
+  // const defaultCenter = {
+  //   lat: 37.722,
+  //   lng: -122.214,
+  // };
+
+  // const position = {
+  //   lat: 37.722,
+  //   lng: -122.214,
+  // };
+
+  const onLoad = (marker) => {
+    console.log("marker: ", marker);
+  };
 
   return (
-    <LoadScript
-      googleMapsApiKey={kGoogleApiKey}>
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={4.5}
-        center={defaultCenter}
-      />
-    </LoadScript>
-  )
+    <div>
+      {props.contactData.address ? (
+        <LoadScript googleMapsApiKey={kGoogleApiKey}>
+          <GoogleMap mapContainerStyle={mapStyles} zoom={8} center={markerData}>
+            <MarkerF onLoad={onLoad} position={markerData} />
+          </GoogleMap>
+        </LoadScript>
+      ) : null}
+    </div>
+  );
 };
 
 export default Map;
-
-// import { useMemo } from "react";
-// import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-
-// const Map = () => {
-//   const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
-
-//   const mapStyles = {
-//     height: "100vh",
-//     width: "100%",
-//   };
-
-//   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: "",
-//   });
-
-//   if (!isLoaded) return <div>Loading...</div>;
-//   return (
-//     <GoogleMap zoom={10} center={center} mapContainerStyle={mapStyles}>
-//       <Marker position={center} />
-//     </GoogleMap>
-//   );
-// };
-
-// export default Map;

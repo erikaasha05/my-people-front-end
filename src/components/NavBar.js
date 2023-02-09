@@ -6,12 +6,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import logo from "../my_people_logo.png";
 import NewContactForm from "./NewContactForm";
-import Map from "./Map";
 
 
 const NavBar = (props) => {
   const [showAddContactModal, setShowAddContactModal] = useState(false)
-  const [showMapModal, setShowMapModal] = useState(false);
+  // const [showMapModal, setShowMapModal] = useState(false);
 
   const handleContactClose = () => {
     setShowAddContactModal(false);
@@ -21,13 +20,13 @@ const NavBar = (props) => {
     setShowAddContactModal(true);
   };
 
-  const handleMapClose = () => {
-    setShowMapModal(false);
-  };
+  // const handleMapClose = () => {
+  //   setShowMapModal(false);
+  // };
 
-  const handleMapShow = () => {
-    setShowMapModal(true);
-  };
+  // const handleMapShow = () => {
+  //   setShowMapModal(true);
+  // };
 
   return (
     <Navbar bg="light" expand="lg" sticky="top">
@@ -43,7 +42,7 @@ const NavBar = (props) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto container-fluid">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link onClick={handleContactShow} >Add Contact</Nav.Link>
             <Modal size="lg" show={showAddContactModal} onHide={handleContactClose} centered>
@@ -55,18 +54,18 @@ const NavBar = (props) => {
                 <Button onClick={handleContactClose}>Close</Button>
               </Modal.Footer>
             </Modal>
-            <Nav.Link href="#reminders">Reminders</Nav.Link>
-            <Nav.Link onClick={handleMapShow}>Map</Nav.Link>
+            <Nav.Link onClick={() => props.onReminderSelect()}>Reminders</Nav.Link>
+            {/* <Nav.Link onClick={handleMapShow}>Map</Nav.Link>
             <Modal size="lg" show={showMapModal} onHide={handleMapClose} centered>
               <Modal.Header closeButton>Map</Modal.Header>
               <Modal.Body>
-                <Map />
+                <Map contacts={props.contacts} />
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={handleMapClose}>Close</Button>
               </Modal.Footer>
-            </Modal>
-            <Nav.Link href="/login" onClick={() => props.onLogout()}>Log Out</Nav.Link>
+            </Modal> */}
+            <Nav.Link className="ms-auto" onClick={() => props.onLogout()}>Log Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

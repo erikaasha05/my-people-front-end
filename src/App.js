@@ -50,7 +50,7 @@ const getAllContactsApi = (token) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       return response.data.contacts.map(convertFromContactApi);
     })
     .catch((err) => console.log(`error from get contact api ${err}`));
@@ -62,7 +62,7 @@ const getAllRemindersApi = (token) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      console.log(`response.data.reminders ${response.data.reminders.map(convertFromReminderApi)}`);
+      // console.log(`response.data.reminders ${response.data.reminders.map(convertFromReminderApi)}`);
       return response.data.reminders.map(convertFromReminderApi);
     })
     .catch((err) => console.log(`error from get reminders api ${err}`));
@@ -175,8 +175,9 @@ const logUserOutApi = () => {
 
 function App() {
   const [contactData, setContactData] = useState([]);
-  const [selectedContact, setSelectedContact] = useState({});
+  const [selectedContact, setSelectedContact] = useState("");
   const [reminderData, setReminderData] = useState([]);
+  const [showReminders, setShowReminders] = useState(false);
 
   const { token, removeToken, setToken } = useToken();
 
@@ -188,8 +189,10 @@ function App() {
 
   const getAllReminders = (token) => {
     return getAllRemindersApi(token).then((reminders) => {
-      const sortedReminders = reminders.sort((a, b) => (a["date"] < b["date"] ? -1 : 1));
-      console.log(`sorted reminders ${sortedReminders}`);
+      const sortedReminders = reminders.sort((a, b) =>
+        a["date"] < b["date"] ? -1 : 1
+      );
+      // console.log(`sorted reminders ${sortedReminders}`);
       setReminderData(sortedReminders);
     });
   };
@@ -242,7 +245,13 @@ function App() {
 
   const onContactSelect = async (contactId, token) => {
     const contact = await getOneContactApi(contactId, token);
+    setShowReminders(false);
     setSelectedContact(contact);
+  };
+
+  const onReminderSelect = () => {
+    setSelectedContact("");
+    setShowReminders(true);
   };
 
   const onLogout = () => {
@@ -255,7 +264,7 @@ function App() {
 
   return (
     <section>
-      {!token && token !== "" && token !== undefined ? (
+      {(!token && token !== "" && token !== undefined) || !contactData ? (
         <Login />
       ) : (
         <div>
@@ -264,6 +273,7 @@ function App() {
               handleNewContactSubmit={handleNewContactSubmit}
               onLogout={onLogout}
               token={token}
+              onReminderSelect={onReminderSelect}
             />
           </header>
           <Container className="mt-4">
@@ -279,19 +289,29 @@ function App() {
                 />
               </Col>
               <Col>
-                <ReminderList
+                {/* <ReminderList
+                  reminders={reminderData}
+                  onDeleteReminder={deleteReminder}
+                  onReminderSubmit={handleReminderSubmit}
+                  token={token}
+                /> */}
+                {showReminders ? (
+                  <ReminderList
                   reminders={reminderData}
                   onDeleteReminder={deleteReminder}
                   onReminderSubmit={handleReminderSubmit}
                   token={token}
                 />
-                <Contact
-                  contactData={selectedContact}
-                  onDeleteContact={deleteContact}
-                  onReminderSubmit={handleReminderSubmit}
-                  handleUpdateContactSubmit={handleUpdatedContactSubmit}
-                  token={token}
-                />
+                ) : null}
+                {selectedContact ? (
+                  <Contact
+                    contactData={selectedContact}
+                    onDeleteContact={deleteContact}
+                    onReminderSubmit={handleReminderSubmit}
+                    handleUpdateContactSubmit={handleUpdatedContactSubmit}
+                    token={token}
+                  />
+                ) : null}
               </Col>
             </Row>
           </Container>

@@ -6,7 +6,8 @@ import Modal from "react-bootstrap/Modal";
 import NewReminderForm from "./NewReminderForm";
 import UpdateContactForm from "./UpdateContactForm";
 import "./Contact.css";
-import ReminderList from "./ReminderList";
+// import ReminderList from "./ReminderList";
+import Map from "./Map";
 
 const Contact = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -32,15 +33,16 @@ const Contact = (props) => {
           ) : null}
           <NewReminderForm contactData={props.contactData} onReminderSubmit={props.onReminderSubmit} token={props.token} />
         </Col>
-        <Col className="mt-4" xs={7}>
+        <Col className="mt-4" xs={6}>
           <p>📱 Phone Number: {props.contactData.number}</p>
           <p>✉️ Email Address: {props.contactData.email}</p>
           <p>🎂 Birthday: {props.contactData.birthday}</p>
           <p>👪 Relationships: {props.contactData.relationships}</p>
           <p>🗒️ Notes: {props.contactData.notes}</p>
+          <p>🏠 Address: {props.contactData.address}</p>
         </Col>
-        <Col xs={1}>
-          <Button size="sm" onClick={handleShow}>
+        <Col xs={2}>
+          <Button className="me-3" size="sm" onClick={handleShow}>
             Edit
           </Button>
           <Modal size="lg" show={showModal} onHide={handleClose} centered>
@@ -72,6 +74,9 @@ const Contact = (props) => {
           contactData={props.contactData}
         />
       </Row> */}
+      <Row>
+      <Map contactData={props.contactData} />
+      </Row>
     </div>
   );
 };
