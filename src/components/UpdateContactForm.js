@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { FiEdit } from "react-icons/fi";
 
 const UpdateContactForm = (props) => {
   const [contactData, setContactData] = useState(props.contactData);
@@ -62,9 +65,19 @@ const UpdateContactForm = (props) => {
 
   return (
     <div>
-      <Button className="me-3" size="sm" onClick={handleShow}>
-        Edit
-      </Button>
+      <OverlayTrigger 
+        key="edit-right" 
+        placement="right"
+        overlay={
+          <Tooltip id="tooltip-edit">
+            Update Contact
+          </Tooltip>
+        }
+      >
+        <Button className="me-3" variant="light" size="sm" onClick={handleShow}>
+          <FiEdit />
+        </Button>
+      </OverlayTrigger>
       <Modal size="lg" show={showModal} onHide={handleClose} centered>
         <Modal.Header cloaseButton>Update Contact</Modal.Header>
         <Modal.Body>
@@ -171,7 +184,7 @@ const UpdateContactForm = (props) => {
                 placeholder="Select Tags"
               />
             </Form.Group>
-            <Button type="submit">Update Contact</Button>
+            <Button variant="light" type="submit">Update Contact</Button>
           </Form>
         </Modal.Body>
       </Modal>

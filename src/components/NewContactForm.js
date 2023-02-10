@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import "./NewContactForm.css";
 
 const kDefaultFormData = {
   firstName: "",
@@ -35,6 +36,10 @@ const formatNumber = (value) => {
 const NewContactForm = (props) => {
   const [contactData, setContactData] = useState(kDefaultFormData);
 
+  const ifFirstNameEmpty = contactData.firstName ? "" : "empty";
+  const ifLastNameEmpty = contactData.lastName ? "" : "empty";
+  const ifNumberEmpty = contactData.number ? "" : "empty";
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleNewContactSubmit(contactData, props.token);
@@ -62,6 +67,7 @@ const NewContactForm = (props) => {
       <Form.Group className="mb-3">
         <Form.Label htmlFor="firstName">First Name</Form.Label>
         <Form.Control
+          className={ifFirstNameEmpty}
           type="text"
           id="firstName"
           name="firstName"
@@ -75,6 +81,7 @@ const NewContactForm = (props) => {
       <Form.Group className="mb-3">
         <Form.Label htmlFor="lastName">Last Name</Form.Label>
         <Form.Control
+          className={ifLastNameEmpty}
           type="text"
           id="lastName"
           name="lastName"
@@ -87,6 +94,7 @@ const NewContactForm = (props) => {
       <Form.Group className="mb-3">
         <Form.Label htmlFor="number">Primary Phone Number</Form.Label>
         <Form.Control
+          className={ifNumberEmpty}
           type="text"
           id="number"
           name="number"
@@ -162,7 +170,7 @@ const NewContactForm = (props) => {
           placeholder="Select Tags"
         />
       </Form.Group>
-      <Button type="submit">Add Contact</Button>
+      <Button variant="light" type="submit">Add Contact</Button>
     </Form>
   );
 };

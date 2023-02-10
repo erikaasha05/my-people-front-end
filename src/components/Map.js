@@ -108,8 +108,8 @@ const Map = (props) => {
   }, [props.contactData]);
 
   const mapStyles = {
-    height: "35vh",
-    width: "40%",
+    height: "40vh",
+    width: "100%",
   };
 
   // const defaultCenter = {
@@ -130,7 +130,7 @@ const Map = (props) => {
     <div>
       {props.contactData.address ? (
         <LoadScript googleMapsApiKey={kGoogleApiKey}>
-          <GoogleMap mapContainerStyle={mapStyles} zoom={8} center={markerData}>
+          <GoogleMap mapContainerStyle={mapStyles} zoom={10} center={markerData}>
             <MarkerF onLoad={onLoad} position={markerData} />
           </GoogleMap>
         </LoadScript>

@@ -39,7 +39,7 @@ const NewReminderForm = (props) => {
 
   return (
     <div>
-      <Button size="sm" onClick={handleShow}>
+      <Button variant="light" size="sm" onClick={handleShow}>
         Add Reminder
       </Button>
       <Modal size="lg" show={reminderData.show} onHide={handleClose} centered>
@@ -70,7 +70,7 @@ const NewReminderForm = (props) => {
                 placeholder="Date"
               />
             </Form.Group>
-            <Button type="submit">
+            <Button variant="light" type="submit">
               Add Reminder
             </Button>
           </Form>

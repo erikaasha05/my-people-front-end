@@ -8,7 +8,7 @@ import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
 import useToken from "./components/useToken";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 // import Map from "./components/Map";
 
 const kBaseUrl = process.env.REACT_APP_BACKEND_URL;

@@ -1,6 +1,7 @@
 import React from "react";
 // import PropTypes from 'prop-types'
 import ListGroup from "react-bootstrap/ListGroup";
+import { FiPhone } from "react-icons/fi";
 import "./ContactList.css";
 
 const ContactList = (props) => {
@@ -17,7 +18,7 @@ const ContactList = (props) => {
           <div className="fw-bold">
             {contact.firstName} {contact.lastName}
           </div>
-          📱 {contact.number}
+          <FiPhone /> {contact.number}
         </div>
       </ListGroup.Item>
     );
