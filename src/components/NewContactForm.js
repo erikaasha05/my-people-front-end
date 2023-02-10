@@ -133,9 +133,9 @@ const NewContactForm = (props) => {
         <Form.Label htmlFor="relationships">Relationships</Form.Label>
         <Form.Control
           type="text"
-          id="relationships"
-          name="relationships"
-          value={contactData.relationships}
+          id="relationship"
+          name="relationship"
+          value={contactData.relationship}
           onChange={handleNewContactData}
           placeholder="Relationships"
         />

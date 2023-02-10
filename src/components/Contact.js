@@ -10,15 +10,15 @@ import "./Contact.css";
 import Map from "./Map";
 
 const Contact = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  const handleClose = () => {
-    setShowModal(false);
-  };
+  // const handleClose = () => {
+  //   setShowModal(false);
+  // };
 
-  const handleShow = () => {
-    setShowModal(true);
-  };
+  // const handleShow = () => {
+  //   setShowModal(true);
+  // };
 
   return (
     <div>
@@ -27,7 +27,7 @@ const Contact = (props) => {
           <h1>{props.contactData.firstName}</h1>
           <h3>{props.contactData.lastName}</h3>
           {props.contactData.email ? (
-            <Button className="mb-2" size="sm">
+            <Button className="mb-2" size="sm" href={`mailto:${props.contactData.email}`}>
               Email {props.contactData.firstName}
             </Button>
           ) : null}
@@ -37,27 +37,16 @@ const Contact = (props) => {
           <p>📱 Phone Number: {props.contactData.number}</p>
           <p>✉️ Email Address: {props.contactData.email}</p>
           <p>🎂 Birthday: {props.contactData.birthday}</p>
-          <p>👪 Relationships: {props.contactData.relationships}</p>
+          <p>👪 Relationships: {props.contactData.relationship}</p>
           <p>🗒️ Notes: {props.contactData.notes}</p>
           <p>🏠 Address: {props.contactData.address}</p>
         </Col>
         <Col xs={2}>
-          <Button className="me-3" size="sm" onClick={handleShow}>
-            Edit
-          </Button>
-          <Modal size="lg" show={showModal} onHide={handleClose} centered>
-            <Modal.Header closeButton>Add a New Contact</Modal.Header>
-            <Modal.Body>
-              <UpdateContactForm
-                contactData={props.contactData}
-                handleUpdateContactSubmit={props.handleUpdateContactSubmit}
-                token={props.token}
-              />
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={handleClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+          <UpdateContactForm
+            contactData={props.contactData}
+            handleUpdateContactSubmit={props.handleUpdateContactSubmit}
+            token={props.token}
+          />
           <Button
             size="sm"
             onClick={() => props.onDeleteContact(props.contactData.contactId, props.token)}

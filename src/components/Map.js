@@ -105,7 +105,7 @@ const Map = (props) => {
 
   useEffect(() => {
     getMarkerData();
-  }, []);
+  }, [props.contactData]);
 
   const mapStyles = {
     height: "35vh",

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -26,14 +27,21 @@ const logUserInApi = (userData) => {
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState(kDefaultFormData);
+  const [message, setMessage] = useState("hello");
   const { setToken, ...rest } = useToken();
+  const navigate = useNavigate();
   // const { token, removeToken, setToken } = useToken();
 
   const handleLoginSubmit = (userDetails) => {
     logUserInApi(userDetails).then((response) => {
-      console.log(response.access_token);
+      // console.log(response.msg);
       setToken(response.access_token);
-      return response;
+      setMessage(response);
+      console.log()
+
+      if (response.msg === "Successfully logged in.") {
+        navigate("/dashboard");
+      }
     });
   };
 
@@ -94,10 +102,12 @@ const Login = () => {
                     placeholder="Password"
                   />
                 </Form.Group>
-
                 <Button variant="primary" type="submit">
                   Log In
                 </Button>
+                <Form.Group className="mt-2">
+                  <Form.Text className="text-muted">{message.msg}</Form.Text>
+                </Form.Group>
               </Form>
               <div className="mt-2">
                 Don't have an account? <a href="/signup">Register</a>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import Contact from "./components/Contact";
@@ -180,6 +181,7 @@ function App() {
   const [showReminders, setShowReminders] = useState(false);
 
   const { token, removeToken, setToken } = useToken();
+  const navigate = useNavigate();
 
   const getAllContacts = (token) => {
     return getAllContactsApi(token).then((contacts) => {
@@ -258,6 +260,7 @@ function App() {
     return logUserOutApi().then((message) => {
       removeToken();
       console.log(message.msg);
+      navigate("/login");
       return message.msg;
     });
   };
@@ -265,7 +268,7 @@ function App() {
   return (
     <section>
       {(!token && token !== "" && token !== undefined) || !contactData ? (
-        <Login />
+        navigate("/login")
       ) : (
         <div>
           <header className="App-header">

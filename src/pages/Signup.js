@@ -63,7 +63,7 @@ const handleNewUserData = (event) =>{
           </Col>
           <Col>
             <Card.Body>
-              <h1>Sign Up</h1>
+              <h1>Register</h1>
               <Form onSubmit={handleRegister}>
                 <Form.Group className="mb-4">
                   <Form.Label>Username</Form.Label>
