@@ -105,7 +105,9 @@ const Map = (props) => {
 
   useEffect(() => {
     getMarkerData();
-  }, [props.contactData]);
+  }, []);
+
+  // props.contactData as a dependency for useEffect?
 
   const mapStyles = {
     height: "40vh",

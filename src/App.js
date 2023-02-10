@@ -208,7 +208,7 @@ function App() {
     return deleteContactApi(contactId, token).then((contactResult) => {
       setSelectedContact({});
       setSelectedContact("");
-      getAllContacts(token);
+      // getAllContacts(token);
     });
   };
 
@@ -241,7 +241,7 @@ function App() {
     createReminderApi(contactId, data, token)
       .then((newReminder) => {
         setReminderData([...reminderData, newReminder]);
-        getAllReminders(token);
+        // getAllReminders(token);
       })
       .catch((err) => console.log(err));
   };
