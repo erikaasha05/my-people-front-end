@@ -207,6 +207,7 @@ function App() {
   const deleteContact = (contactId, token) => {
     return deleteContactApi(contactId, token).then((contactResult) => {
       setSelectedContact({});
+      setSelectedContact("");
       getAllContacts(token);
     });
   };
