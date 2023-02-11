@@ -38,12 +38,12 @@ const Contact = (props) => {
           <NewReminderForm contactData={props.contactData} onReminderSubmit={props.onReminderSubmit} token={props.token} />
         </Col>
         <Col className="mt-4" xs={6}>
-          <p><FiPhone /> Phone Number: {props.contactData.number}</p>
-          <p><FiMail /> Email Address: {props.contactData.email}</p>
-          <p><FaBirthdayCake /> Birthday: {props.contactData.birthday}</p>
-          <p><FiUsers /> Relationships: {props.contactData.relationship}</p>
-          <p><FaStickyNote/> Notes: {props.contactData.notes}</p>
-          <p><FiHome /> Address: {props.contactData.address}</p>
+          <p><FiPhone /> {props.contactData.number}</p>
+          <p><FiMail /> {props.contactData.email}</p>
+          <p><FaBirthdayCake /> {props.contactData.birthday}</p>
+          <p><FiUsers /> {props.contactData.relationship}</p>
+          <p><FaStickyNote/> {props.contactData.notes}</p>
+          <p><FiHome /> {props.contactData.address}</p>
           <Map contactData={props.contactData} />
         </Col>
         <Col xs={2}>

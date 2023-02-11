@@ -40,7 +40,7 @@ const NavBar = (props) => {
                 <NewContactForm handleNewContactSubmit={props.handleNewContactSubmit} token={props.token} />
               </Modal.Body>
               <Modal.Footer>
-                <Button onClick={handleContactClose}>Close</Button>
+                <Button variant="secondary" onClick={handleContactClose}>Close</Button>
               </Modal.Footer>
             </Modal>
             <Nav.Link onClick={() => props.onReminderSelect()}>Reminders</Nav.Link>

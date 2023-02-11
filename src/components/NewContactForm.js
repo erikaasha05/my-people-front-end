@@ -170,7 +170,7 @@ const NewContactForm = (props) => {
           placeholder="Select Tags"
         />
       </Form.Group>
-      <Button variant="light" type="submit">Add Contact</Button>
+      <Button variant="secondary" type="submit">Add Contact</Button>
     </Form>
   );
 };

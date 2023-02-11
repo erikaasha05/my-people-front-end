@@ -6,6 +6,8 @@ import Modal from "react-bootstrap/Modal";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { FiEdit } from "react-icons/fi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 const UpdateContactForm = (props) => {
   const [contactData, setContactData] = useState(props.contactData);
@@ -14,6 +16,10 @@ const UpdateContactForm = (props) => {
   const handleClose = () => {
     setShowModal(false);
   };
+
+  const closeModal = () => {
+    setTimeout(handleClose, 1500);
+  }
 
   const handleShow = () => {
     setShowModal(true);
@@ -36,6 +42,12 @@ const UpdateContactForm = (props) => {
     }
   };
 
+  const testToast = () => { 
+    toast.success("Contact updated", {
+      position: toast.POSITION.TOP_CENTER
+    })
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleUpdateContactSubmit(
@@ -44,7 +56,8 @@ const UpdateContactForm = (props) => {
       props.token
     );
     setContactData(props.contactData);
-    setShowModal(false);
+    testToast();
+    closeModal();
   };
 
   const handleNewContactData = (event) => {
@@ -79,7 +92,7 @@ const UpdateContactForm = (props) => {
         </Button>
       </OverlayTrigger>
       <Modal size="lg" show={showModal} onHide={handleClose} centered>
-        <Modal.Header cloaseButton>Update Contact</Modal.Header>
+        <Modal.Header closeButton>Update Contact</Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
@@ -184,7 +197,9 @@ const UpdateContactForm = (props) => {
                 placeholder="Select Tags"
               />
             </Form.Group>
-            <Button variant="light" type="submit">Update Contact</Button>
+            <Button variant="secondary" type="submit">Update Contact</Button>
+            {/* <Button onClick={testToast}>X</Button> */}
+            <ToastContainer />
           </Form>
         </Modal.Body>
       </Modal>

@@ -70,7 +70,7 @@ const NewReminderForm = (props) => {
                 placeholder="Date"
               />
             </Form.Group>
-            <Button variant="light" type="submit">
+            <Button variant="secondary" type="submit">
               Add Reminder
             </Button>
           </Form>
