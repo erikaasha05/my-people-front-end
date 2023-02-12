@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./NewContactForm.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const kDefaultFormData = {
   firstName: "",
@@ -40,10 +41,17 @@ const NewContactForm = (props) => {
   const ifLastNameEmpty = contactData.lastName ? "" : "empty";
   const ifNumberEmpty = contactData.number ? "" : "empty";
 
+  const newContactToast = () => {
+    toast.success("New contact added", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleNewContactSubmit(contactData, props.token);
     setContactData(kDefaultFormData);
+    newContactToast();
   };
 
   const handleNewContactData = (event) => {
@@ -171,6 +179,7 @@ const NewContactForm = (props) => {
         />
       </Form.Group>
       <Button variant="secondary" type="submit">Add Contact</Button>
+      <ToastContainer autoClose={300} />
     </Form>
   );
 };

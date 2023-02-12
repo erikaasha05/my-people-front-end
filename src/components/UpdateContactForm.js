@@ -7,7 +7,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { FiEdit } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 const UpdateContactForm = (props) => {
   const [contactData, setContactData] = useState(props.contactData);
@@ -19,11 +19,11 @@ const UpdateContactForm = (props) => {
 
   const closeModal = () => {
     setTimeout(handleClose, 1500);
-  }
+  };
 
   const handleShow = () => {
     setShowModal(true);
-    setContactData(props.contactData)
+    setContactData(props.contactData);
   };
 
   const formatNumber = (value) => {
@@ -42,10 +42,10 @@ const UpdateContactForm = (props) => {
     }
   };
 
-  const testToast = () => { 
+  const toastMessage = () => {
     toast.success("Contact updated", {
-      position: toast.POSITION.TOP_CENTER
-    })
+      position: toast.POSITION.TOP_CENTER,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -56,7 +56,7 @@ const UpdateContactForm = (props) => {
       props.token
     );
     setContactData(props.contactData);
-    testToast();
+    toastMessage();
     closeModal();
   };
 
@@ -78,14 +78,10 @@ const UpdateContactForm = (props) => {
 
   return (
     <div>
-      <OverlayTrigger 
-        key="edit-right" 
+      <OverlayTrigger
+        key="edit-right"
         placement="right"
-        overlay={
-          <Tooltip id="tooltip-edit">
-            Update Contact
-          </Tooltip>
-        }
+        overlay={<Tooltip id="tooltip-edit">Update Contact</Tooltip>}
       >
         <Button className="me-3" variant="light" size="sm" onClick={handleShow}>
           <FiEdit />
@@ -197,9 +193,10 @@ const UpdateContactForm = (props) => {
                 placeholder="Select Tags"
               />
             </Form.Group>
-            <Button variant="secondary" type="submit">Update Contact</Button>
-            {/* <Button onClick={testToast}>X</Button> */}
-            <ToastContainer />
+            <Button variant="secondary" type="submit">
+              Update Contact
+            </Button>
+            <ToastContainer autoClose={500} />
           </Form>
         </Modal.Body>
       </Modal>

@@ -8,6 +8,7 @@ import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
 import useToken from "./components/useToken";
+import { toast } from "react-toastify";
 // import Login from "./pages/Login";
 // import Map from "./components/Map";
 
@@ -145,7 +146,7 @@ const createReminderApi = (contactId, newReminderData, token) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      console.log(`create reminder api ${response.data}`);
+      // console.log(`create reminder api ${response.data}`);
       return response.data;
     })
     .catch((err) => console.log(`create a reminder api ${err}`));
@@ -204,16 +205,32 @@ function App() {
     getAllReminders(token);
   }, []);
 
+  const deleteContactToast = () => {
+    toast.success("Contact deleted", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
   const deleteContact = (contactId, token) => {
     return deleteContactApi(contactId, token).then((contactResult) => {
-      setSelectedContact({});
-      setSelectedContact("");
-      // getAllContacts(token);
+      // setSelectedContact({});
+      deleteContactToast();
+      setTimeout(() => {
+        setSelectedContact("");
+        getAllContacts(token);
+      }, 1500);
+    });
+  };
+
+  const deleteReminderToast = () => {
+    toast.success("Reminder deleted", {
+      position: toast.POSITION.TOP_CENTER,
     });
   };
 
   const deleteReminder = (reminderId, token) => {
     return deleteReminderApi(reminderId, token).then((reminderResult) => {
+      deleteReminderToast();
       getAllReminders(token);
     });
   };
@@ -241,7 +258,7 @@ function App() {
     createReminderApi(contactId, data, token)
       .then((newReminder) => {
         setReminderData([...reminderData, newReminder]);
-        // getAllReminders(token);
+        getAllReminders(token);
       })
       .catch((err) => console.log(err));
   };
@@ -293,19 +310,13 @@ function App() {
                 />
               </Col>
               <Col>
-                {/* <ReminderList
-                  reminders={reminderData}
-                  onDeleteReminder={deleteReminder}
-                  onReminderSubmit={handleReminderSubmit}
-                  token={token}
-                /> */}
                 {showReminders ? (
                   <ReminderList
-                  reminders={reminderData}
-                  onDeleteReminder={deleteReminder}
-                  onReminderSubmit={handleReminderSubmit}
-                  token={token}
-                />
+                    reminders={reminderData}
+                    onDeleteReminder={deleteReminder}
+                    onReminderSubmit={handleReminderSubmit}
+                    token={token}
+                  />
                 ) : null}
                 {selectedContact ? (
                   <Contact

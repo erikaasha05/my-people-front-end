@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { FaTimesCircle } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import NewReminderForm from "./NewReminderForm";
 
 const ReminderList = (props) => {
@@ -13,26 +15,23 @@ const ReminderList = (props) => {
         <div className="ms-2 me-auto">
           <div className="fw-bold">{reminder.message}</div>
           Reminder Date: {reminder.date}
-          <OverlayTrigger 
-            key="delete-reminder-left" 
+          <OverlayTrigger
+            key="delete-reminder-left"
             placement="left"
             overlay={
-              <Tooltip id="tooltip-delete-reminder">
-                Delete Reminder
-              </Tooltip>
+              <Tooltip id="tooltip-delete-reminder">Delete Reminder</Tooltip>
             }
           >
             <Button
               className="me-3 position-absolute end-0 translate-middle-y"
               size="sm"
               variant="danger"
-              onClick={() =>
-                props.onDeleteReminder(reminder.reminderId, props.token)
-              }
+              onClick={() => props.onDeleteReminder(reminder.reminderId, props.token)}
             >
               <FaTimesCircle />
             </Button>
           </OverlayTrigger>
+          <ToastContainer autoClose={200} />
         </div>
       </ListGroup.Item>
     );
