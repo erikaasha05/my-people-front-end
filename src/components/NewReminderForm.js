@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Form, Button, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const kDefaultFormData = {
   message: "",
   date: "",
-  // show: false,
 };
 
 const NewReminderForm = (props) => {
   const [reminderData, setReminderData] = useState(kDefaultFormData);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const handleClose = () => {
-    // const closeReminder = { ...reminderData, show: false };
-    // setReminderData(closeReminder);
     setShowModal(false);
   };
 
@@ -27,24 +22,18 @@ const NewReminderForm = (props) => {
   };
 
   const handleShow = () => {
-    // const showReminder = { ...reminderData, show: true };
-    // setReminderData(showReminder);
     setShowModal(true);
   };
 
   const toastMessage = () => {
-    toast.success("Reminder added", {
+    toast.success("New reminder created", {
       position: toast.POSITION.TOP_CENTER,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onReminderSubmit(
-      props.contactData.contactId,
-      reminderData,
-      props.token
-    );
+    props.onReminderSubmit(props.contactId, reminderData, props.token);
     setReminderData(kDefaultFormData);
     toastMessage();
     closeModal();
@@ -75,7 +64,7 @@ const NewReminderForm = (props) => {
                 name="message"
                 value={reminderData.message}
                 onChange={handleNewReminderData}
-                required="true"
+                required={true}
                 placeholder="Enter Reminder"
                 autoFocus
               />
@@ -94,7 +83,7 @@ const NewReminderForm = (props) => {
             <Button variant="secondary" type="submit">
               Add Reminder
             </Button>
-            <ToastContainer autoClose={300} />
+            <ToastContainer autoClose={400} />
           </Form>
         </Modal.Body>
       </Modal>
@@ -103,7 +92,9 @@ const NewReminderForm = (props) => {
 };
 
 NewReminderForm.propTypes = {
-  handleReminderSubmit: PropTypes.func,
+  onReminderSubmit: PropTypes.func,
+  token: PropTypes.string,
+  contactId: PropTypes.number,
 };
 
 export default NewReminderForm;

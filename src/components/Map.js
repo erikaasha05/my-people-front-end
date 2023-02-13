@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Geocode from "react-geocode";
 
@@ -30,7 +31,6 @@ const Map = (props) => {
     if (props.contactData.address) {
       getLatLng(props.contactData.address)
         .then((location) => {
-          console.log(location);
           setMarkerData(location);
         })
         .catch((err) => console.log(err));
@@ -39,7 +39,8 @@ const Map = (props) => {
 
   useEffect(() => {
     getMarkerData();
-  }, []);
+    // eslint-disable-next-line
+  }, [props.contactData]);
 
   const mapStyles = {
     height: "40vh",
@@ -60,7 +61,7 @@ const Map = (props) => {
         {props.contactData.address ? (
           <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={10}
+            zoom={12}
             center={markerData}
           >
             <MarkerF onLoad={onLoad} position={markerData} />
@@ -72,5 +73,9 @@ const Map = (props) => {
 
   return isLoaded ? renderMap() : null;
 };
+
+Map.propTypes = {
+  contactData: PropTypes.object,
+}
 
 export default Map;

@@ -1,12 +1,10 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
+import PropTypes from "prop-types";
+import { Form, Button } from "react-bootstrap";
 import { BiSearchAlt2 } from "react-icons/bi";
 
 const SearchBar = (props) => {
   return (
-    <Row>
       <Form action="/dashboard" method="get" className="d-flex">
         <Form.Control
           type="text"
@@ -19,8 +17,12 @@ const SearchBar = (props) => {
         />
         <Button type="submit" className="mb-3 ms-2" variant="outline-secondary"><BiSearchAlt2 /></Button>
       </Form>
-    </Row>
   );
 };
+
+SearchBar.propTypes = {
+  searchQuery: PropTypes.string,
+  setSearchQuery: PropTypes.func,
+}
 
 export default SearchBar;

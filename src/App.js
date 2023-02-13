@@ -2,15 +2,14 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "./App.css";
 import Contact from "./components/Contact";
 import ContactList from "./components/ContactList";
 import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
 import useToken from "./components/useToken";
-import { toast } from "react-toastify";
-// import Login from "./pages/Login";
-// import Map from "./components/Map";
+
 
 const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -45,32 +44,31 @@ const convertFromReminderApi = (apiReminder) => {
   return newReminder;
 };
 
-// refactored to get all contacts for the user signed in
+// get all contacts for the user signed in
 const getAllContactsApi = (token) => {
   return axios
     .get(`${kBaseUrl}/users/contacts`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      // console.log(response.data);
       return response.data.contacts.map(convertFromContactApi);
     })
     .catch((err) => console.log(`error from get contact api ${err}`));
 };
 
+// get all reminders for the user signed in
 const getAllRemindersApi = (token) => {
   return axios
     .get(`${kBaseUrl}/users/contacts`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      // console.log(`response.data.reminders ${response.data.reminders.map(convertFromReminderApi)}`);
       return response.data.reminders.map(convertFromReminderApi);
     })
     .catch((err) => console.log(`error from get reminders api ${err}`));
 };
 
-// refactored to check for valid token
+
 const getOneContactApi = (contactId, token) => {
   return axios
     .get(`${kBaseUrl}/contacts/${contactId}`, {
@@ -82,28 +80,7 @@ const getOneContactApi = (contactId, token) => {
     .catch((err) => console.log(`error from get one contact api ${err}`));
 };
 
-// get all reminders in db
-// const getAllRemindersApi = () => {
-//   return axios
-//     .get(`${kBaseUrl}/reminders`)
-//     .then((response) => {
-//       return response.data.map(convertFromReminderApi);
-//     })
-//     .catch((err) => console.log(`error from get reminders api ${err}`));
-// };
-
-// const getRemindersForContactApi = (contactId) => {
-//   return axios
-//     .get(`${kBaseUrl}/contacts/${contactId}/reminders`)
-//     .then((response) => {
-//       return response.data.reminders.map(convertFromReminderApi);
-//     })
-//     .catch((err) => {
-//       console.log(`from get reminders for a contact api ${err}`);
-//     });
-// };
-
-// refactored to create a contact for the user logged in
+// create a contact for the user logged in
 const createContactApi = (newContactData, token) => {
   return axios
     .post(`${kBaseUrl}/contacts`, newContactData, {
@@ -115,7 +92,7 @@ const createContactApi = (newContactData, token) => {
     .catch((err) => console.log(`create contact api ${err}`));
 };
 
-// refactored to update a contact for the user logged in
+// update a contact for the user logged in
 const updateContactApi = (updatedContactData, contactId, token) => {
   return axios
     .put(`${kBaseUrl}/contacts/${contactId}`, updatedContactData, {
@@ -127,7 +104,7 @@ const updateContactApi = (updatedContactData, contactId, token) => {
     .catch((err) => console.log(`update contact api ${err}`));
 };
 
-// refactored to delete contact for the user logged in
+// delete contact for the user logged in
 const deleteContactApi = (contactId, token) => {
   return axios
     .delete(`${kBaseUrl}/contacts/${contactId}`, {
@@ -139,20 +116,19 @@ const deleteContactApi = (contactId, token) => {
     .catch((err) => console.log(`delete contact api ${err}`));
 };
 
-// refactored to check for valid token
+// create reminder for a contact
 const createReminderApi = (contactId, newReminderData, token) => {
   return axios
     .post(`${kBaseUrl}/contacts/${contactId}/reminders`, newReminderData, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      // console.log(`create reminder api ${response.data}`);
       return response.data;
     })
     .catch((err) => console.log(`create a reminder api ${err}`));
 };
 
-// refactored to check for valid token
+// delete reminder for a contact
 const deleteReminderApi = (reminderId, token) => {
   return axios
     .delete(`${kBaseUrl}/reminders/${reminderId}`, {
@@ -166,6 +142,7 @@ const deleteReminderApi = (reminderId, token) => {
     });
 };
 
+// log a user out
 const logUserOutApi = () => {
   return axios
     .post(`${kBaseUrl}/logout`)
@@ -181,7 +158,7 @@ function App() {
   const [reminderData, setReminderData] = useState([]);
   const [showReminders, setShowReminders] = useState(false);
 
-  const { token, removeToken, setToken } = useToken();
+  const { token, removeToken } = useToken();
   const navigate = useNavigate();
 
   const getAllContacts = (token) => {
@@ -195,14 +172,15 @@ function App() {
       const sortedReminders = reminders.sort((a, b) =>
         a["date"] < b["date"] ? -1 : 1
       );
-      // console.log(`sorted reminders ${sortedReminders}`);
       setReminderData(sortedReminders);
     });
   };
 
+  
   useEffect(() => {
     getAllContacts(token);
     getAllReminders(token);
+  // eslint-disable-next-line
   }, []);
 
   const deleteContactToast = () => {
@@ -213,7 +191,6 @@ function App() {
 
   const deleteContact = (contactId, token) => {
     return deleteContactApi(contactId, token).then((contactResult) => {
-      // setSelectedContact({});
       deleteContactToast();
       setTimeout(() => {
         setSelectedContact("");
@@ -277,7 +254,6 @@ function App() {
   const onLogout = () => {
     return logUserOutApi().then((message) => {
       removeToken();
-      console.log(message.msg);
       navigate("/login");
       return message.msg;
     });

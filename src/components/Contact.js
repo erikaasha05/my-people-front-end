@@ -1,18 +1,27 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
-import Badge from "react-bootstrap/Badge";
-import { FiTrash2, FiPhone, FiMail, FiHome, FiUsers, FiTag } from "react-icons/fi";
+import PropTypes from "prop-types";
+import {
+  Button,
+  Col,
+  Row,
+  OverlayTrigger,
+  Tooltip,
+  Badge,
+} from "react-bootstrap";
+import {
+  FiTrash2,
+  FiPhone,
+  FiMail,
+  FiHome,
+  FiUsers,
+  FiTag,
+} from "react-icons/fi";
 import { FaBirthdayCake, FaStickyNote } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
 import NewReminderForm from "./NewReminderForm";
 import UpdateContactForm from "./UpdateContactForm";
-import "./Contact.css";
 import Map from "./Map";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "./Contact.css";
 
 const Contact = (props) => {
   return (
@@ -32,7 +41,7 @@ const Contact = (props) => {
             </Button>
           ) : null}
           <NewReminderForm
-            contactData={props.contactData}
+            contactId={props.contactData.contactId}
             onReminderSubmit={props.onReminderSubmit}
             token={props.token}
           />
@@ -45,18 +54,28 @@ const Contact = (props) => {
             <FiMail className="contact-details" /> {props.contactData.email}
           </p>
           <p>
-            <FaBirthdayCake className="contact-details" /> {props.contactData.birthday}
+            <FaBirthdayCake className="contact-details" />{" "}
+            {props.contactData.birthday}
           </p>
           <p>
-            <FiUsers className="contact-details" /> {props.contactData.relationship}
+            <FiUsers className="contact-details" />{" "}
+            {props.contactData.relationship}
           </p>
           <p>
-            <FaStickyNote className="contact-details" /> {props.contactData.notes}
+            <FaStickyNote className="contact-details" />{" "}
+            {props.contactData.notes}
           </p>
           <p>
-            <FiTag /> {props.contactData.tags ? (
-            <Badge pill bg="info" className="ms-2 text-uppercase align-middle">{props.contactData.tags}</Badge>
-          ) : null}
+            <FiTag />{" "}
+            {props.contactData.tags ? (
+              <Badge
+                pill
+                bg="info"
+                className="ms-2 text-uppercase align-middle"
+              >
+                {props.contactData.tags}
+              </Badge>
+            ) : null}
           </p>
           <p>
             <FiHome className="contact-details" /> {props.contactData.address}
@@ -78,7 +97,9 @@ const Contact = (props) => {
               className="mt-2"
               variant="light"
               size="sm"
-              onClick={() => props.onDeleteContact(props.contactData.contactId, props.token)}
+              onClick={() =>
+                props.onDeleteContact(props.contactData.contactId, props.token)
+              }
             >
               <FiTrash2 />
             </Button>
@@ -86,16 +107,16 @@ const Contact = (props) => {
           <ToastContainer autoClose={500} />
         </Col>
       </Row>
-      {/* <Row>
-        <ReminderList 
-          onReminderSubmit={props.onReminderSubmit} 
-          onDeleteContact={props.onDeleteContact}
-          token={props.token}
-          contactData={props.contactData}
-        />
-      </Row> */}
     </div>
   );
+};
+
+Contact.propTypes = {
+  onDeleteContact: PropTypes.func,
+  onReminderSubmit: PropTypes.func,
+  handleUpdateContactSubmit: PropTypes.func,
+  token: PropTypes.string,
+  contactData: PropTypes.object,
 };
 
 export default Contact;

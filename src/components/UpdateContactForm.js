@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import { Form, Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FiEdit } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const UpdateContactForm = (props) => {
   const [contactData, setContactData] = useState(props.contactData);
@@ -18,7 +13,7 @@ const UpdateContactForm = (props) => {
   };
 
   const closeModal = () => {
-    setTimeout(handleClose, 1000);
+    setTimeout(handleClose, 800);
   };
 
   const handleShow = () => {
@@ -99,7 +94,7 @@ const UpdateContactForm = (props) => {
                 name="firstName"
                 value={contactData.firstName}
                 onChange={handleNewContactData}
-                required="true"
+                required={true}
                 placeholder="First Name"
               />
             </Form.Group>
@@ -111,7 +106,7 @@ const UpdateContactForm = (props) => {
                 name="lastName"
                 value={contactData.lastName}
                 onChange={handleNewContactData}
-                required="true"
+                required={true}
                 placeholder="Last Name"
               />
             </Form.Group>
@@ -123,7 +118,7 @@ const UpdateContactForm = (props) => {
                 name="number"
                 value={contactData.number}
                 onChange={handleNewContactData}
-                required="true"
+                required={true}
                 placeholder="Phone Number"
               />
             </Form.Group>
@@ -133,7 +128,7 @@ const UpdateContactForm = (props) => {
                 type="email"
                 id="email"
                 name="email"
-                value={contactData.email}
+                value={contactData.email || ""}
                 onChange={handleNewContactData}
                 placeholder="Enter Email"
               />
@@ -144,7 +139,7 @@ const UpdateContactForm = (props) => {
                 type="text"
                 id="address"
                 name="address"
-                value={contactData.address}
+                value={contactData.address || ""}
                 onChange={handleNewContactData}
                 placeholder="Home Address"
               />
@@ -155,7 +150,7 @@ const UpdateContactForm = (props) => {
                 type="date"
                 id="birthday"
                 name="birthday"
-                value={contactData.birthday}
+                value={contactData.birthday || ""}
                 onChange={handleNewContactData}
                 placeholder="Birthday"
               />
@@ -166,7 +161,7 @@ const UpdateContactForm = (props) => {
                 type="text"
                 id="relationship"
                 name="relationship"
-                value={contactData.relationship}
+                value={contactData.relationship || ""}
                 onChange={handleNewContactData}
                 placeholder="Relationships"
               />
@@ -177,30 +172,22 @@ const UpdateContactForm = (props) => {
                 type="text"
                 id="notes"
                 name="notes"
-                value={contactData.notes}
+                value={contactData.notes || ""}
                 onChange={handleNewContactData}
                 placeholder="Provide Notes Here"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="tags">Tags</Form.Label>
-              {/* <Form.Control
-                type="text"
-                id="tags"
-                name="tags"
-                value={contactData.tags}
-                onChange={handleNewContactData}
-                placeholder="Select Tags"
-              /> */}
               <Form.Select
-                type="select"
                 id="tags"
                 name="tags"
-                value={contactData.tags}
+                value={contactData.tags || ""}
                 aria-label="Select tag"
                 onChange={handleNewContactData}
+                multiple={false}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Select tag
                 </option>
                 <option value="family">Family</option>
@@ -222,7 +209,9 @@ const UpdateContactForm = (props) => {
 };
 
 UpdateContactForm.propTypes = {
-  handleContactSubmit: PropTypes.func,
+  handleUpdateContactSubmit: PropTypes.func,
+  contactData: PropTypes.object,
+  token: PropTypes.string,
 };
 
 export default UpdateContactForm;

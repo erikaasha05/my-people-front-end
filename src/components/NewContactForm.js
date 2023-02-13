@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import "./NewContactForm.css";
+import { Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
+import "./NewContactForm.css";
+
 
 const kDefaultFormData = {
   firstName: "",
@@ -42,7 +42,7 @@ const NewContactForm = (props) => {
   const ifNumberEmpty = contactData.number ? "" : "empty";
 
   const newContactToast = () => {
-    toast.success("New contact added", {
+    toast.success("New contact created", {
       position: toast.POSITION.TOP_CENTER,
     });
   };
@@ -81,7 +81,7 @@ const NewContactForm = (props) => {
           name="firstName"
           value={contactData.firstName}
           onChange={handleNewContactData}
-          required={"true"}
+          required={true}
           placeholder="First Name"
           autoFocus
         />
@@ -95,7 +95,7 @@ const NewContactForm = (props) => {
           name="lastName"
           value={contactData.lastName}
           onChange={handleNewContactData}
-          required={"true"}
+          required={true}
           placeholder="Last Name"
         />
       </Form.Group>
@@ -108,7 +108,7 @@ const NewContactForm = (props) => {
           name="number"
           value={contactData.number}
           onChange={handleNewContactData}
-          required={"true"}
+          required={true}
           placeholder="(123) 456-7890"
         />
       </Form.Group>
@@ -169,23 +169,15 @@ const NewContactForm = (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label htmlFor="tags">Tags</Form.Label>
-        {/* <Form.Control
-          type="text"
-          id="tags"
-          name="tags"
-          value={contactData.tags}
-          onChange={handleNewContactData}
-          placeholder="Select Tags"
-        /> */}
         <Form.Select
-          type="select"
           id="tags"
           name="tags"
           value={contactData.tags}
           aria-label="Select tag"
           onChange={handleNewContactData}
+          multiple={false}
         >
-          <option value="" disabled selected>
+          <option defaultValue="">
             Select tag
           </option>
           <option value="family">Family</option>
@@ -204,7 +196,8 @@ const NewContactForm = (props) => {
 };
 
 NewContactForm.propTypes = {
-  handleContactSubmit: PropTypes.func,
+  handleNewContactSubmit: PropTypes.func,
+  token: PropTypes.string,
 };
 
 export default NewContactForm;

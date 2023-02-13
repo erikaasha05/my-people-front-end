@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { Container, Card, Row, Col, Button, Form } from "react-bootstrap";
 import logo from "../my_people_logo.png";
 import useToken from "../components/useToken";
 
@@ -27,9 +22,8 @@ const logUserInApi = (userData) => {
 const Login = () => {
   const [loginForm, setLoginForm] = useState(kDefaultFormData);
   const [message, setMessage] = useState("hello");
-  const { setToken, ...rest } = useToken();
+  const { setToken } = useToken();
   const navigate = useNavigate();
-  // const { token, removeToken, setToken } = useToken();
 
   const handleLoginSubmit = (userDetails) => {
     logUserInApi(userDetails).then((response) => {

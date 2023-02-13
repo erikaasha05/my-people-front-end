@@ -1,12 +1,8 @@
 import React from "react";
-import ListGroup from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import PropTypes from "prop-types";
+import { ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-// import NewReminderForm from "./NewReminderForm";
 
 const ReminderList = (props) => {
   const reminders = props.reminders.map((reminder) => {
@@ -26,7 +22,9 @@ const ReminderList = (props) => {
               className="me-3 position-absolute end-0 translate-middle-y"
               size="sm"
               variant="outline-danger"
-              onClick={() => props.onDeleteReminder(reminder.reminderId, props.token)}
+              onClick={() =>
+                props.onDeleteReminder(reminder.reminderId, props.token)
+              }
             >
               <IoMdClose />
             </Button>
@@ -38,13 +36,22 @@ const ReminderList = (props) => {
   });
   return (
     <div>
-      {/* <NewReminderForm
-        onReminderSubmit={props.onReminderSubmit}
-        token={props.token}
-      /> */}
       <ListGroup>{reminders}</ListGroup>
     </div>
   );
+};
+
+ReminderList.propTypes = {
+  reminder: PropTypes.arrayOf(
+    PropTypes.shape({
+      reminderId: PropTypes.number,
+      message: PropTypes.string,
+      date: PropTypes.string,
+    })
+  ),
+  onDeleteReminder: PropTypes.func,
+  onReminderSubmit: PropTypes.func,
+  token: PropTypes.string,
 };
 
 export default ReminderList;
