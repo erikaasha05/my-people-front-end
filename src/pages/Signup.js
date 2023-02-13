@@ -75,9 +75,6 @@ const handleNewUserData = (event) =>{
                     required="true"
                     placeholder="Enter username"
                   />
-                  {/* <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text> */}
                 </Form.Group>
                 <Form.Group className="mb-4">
                   <Form.Label>Password</Form.Label>
@@ -91,10 +88,7 @@ const handleNewUserData = (event) =>{
                     placeholder="Password"
                   />
                 </Form.Group>
-                {/* <Form.Group className="mb-4" controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
-                <Button variant="primary" type="submit">
+                <Button variant="dark" type="submit">
                   Register
                 </Button>
                 <Form.Group className="mt-2">
@@ -106,7 +100,6 @@ const handleNewUserData = (event) =>{
               <div className="mt-2">
                 Already have an account? <a href="/login">Sign In</a>
               </div>
-
             </Card.Body>
           </Col>
         </Row>

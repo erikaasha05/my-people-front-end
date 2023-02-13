@@ -33,7 +33,6 @@ const Login = () => {
 
   const handleLoginSubmit = (userDetails) => {
     logUserInApi(userDetails).then((response) => {
-      // console.log(response.msg);
       setToken(response.access_token);
       setMessage(response);
       console.log()
@@ -72,7 +71,7 @@ const Login = () => {
           </Col>
           <Col>
             <Card.Body>
-              <h1>Log In</h1>
+              <h1>Sign In</h1>
               <Form onSubmit={handleLogin}>
                 <Form.Group className="mb-4">
                   <Form.Label>Username</Form.Label>
@@ -85,9 +84,6 @@ const Login = () => {
                     required="true"
                     placeholder="Enter username"
                   />
-                  {/* <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text> */}
                 </Form.Group>
                 <Form.Group className="mb-4">
                   <Form.Label>Password</Form.Label>
@@ -101,8 +97,8 @@ const Login = () => {
                     placeholder="Password"
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                  Log In
+                <Button variant="dark" type="submit">
+                  Sign In
                 </Button>
                 <Form.Group className="mt-2">
                   <Form.Text className="text-muted">{message.msg}</Form.Text>
