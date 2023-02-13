@@ -60,7 +60,7 @@ const Login = () => {
               src={logo}
               alt="logo"
               className="rounded-t-5 rounded-tr-lg-0"
-              fluid
+              fluid="true"
             />
           </Col>
           <Col>
@@ -75,7 +75,7 @@ const Login = () => {
                     name="username"
                     value={loginForm.username}
                     onChange={handleUserData}
-                    required="true"
+                    required={true}
                     placeholder="Enter username"
                   />
                 </Form.Group>
@@ -87,7 +87,7 @@ const Login = () => {
                     name="password"
                     value={loginForm.password}
                     onChange={handleUserData}
-                    required="true"
+                    required={true}
                     placeholder="Password"
                   />
                 </Form.Group>

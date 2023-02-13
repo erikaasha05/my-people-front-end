@@ -308,7 +308,9 @@ function App() {
           </Container>
         </div>
       )}
-      <footer></footer>
+      <footer>
+        <p className="footer-text">2023 My People</p>
+      </footer>
     </section>
   );
 }

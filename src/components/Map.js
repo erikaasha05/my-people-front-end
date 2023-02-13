@@ -7,17 +7,13 @@ const kGoogleApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 Geocode.setApiKey(kGoogleApiKey);
 Geocode.setLanguage("en");
-Geocode.enableDebug();
+// Geocode.enableDebug();
 
 const getLatLng = (address) => {
   return Geocode.fromAddress(address).then(
     (response) => {
       const { lat, lng } = response.results[0].geometry.location;
-      const latLon = {
-        lat: lat,
-        lng: lng,
-      };
-
+      const latLon = { lat: parseFloat(lat), lng: parseFloat(lng) };
       return latLon;
     },
     (err) => console.log(`getLatLng ${err}`)
@@ -62,9 +58,9 @@ const Map = (props) => {
           <GoogleMap
             mapContainerStyle={mapStyles}
             zoom={12}
-            center={markerData}
+            center={markerData ? markerData : null}
           >
-            <MarkerF onLoad={onLoad} position={markerData} />
+            <MarkerF onLoad={onLoad} position={markerData ? markerData : null} />
           </GoogleMap>
         ) : null}
       </div>
@@ -76,6 +72,6 @@ const Map = (props) => {
 
 Map.propTypes = {
   contactData: PropTypes.object,
-}
+};
 
 export default Map;
