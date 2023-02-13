@@ -308,8 +308,10 @@ function App() {
           </Container>
         </div>
       )}
-      <footer>
-        <p className="footer-text">2023 My People</p>
+      <footer className="bg-light">
+        <Container>
+            <p className="footer-text">Copyright &copy; 2023 My People</p>
+        </Container>
       </footer>
     </section>
   );

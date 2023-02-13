@@ -39,7 +39,7 @@ const Map = (props) => {
   }, [props.contactData]);
 
   const mapStyles = {
-    height: "40vh",
+    height: "35vh",
     width: "100%",
   };
 
@@ -53,7 +53,7 @@ const Map = (props) => {
 
   const renderMap = () => {
     return (
-      <div>
+      <div className="mb-3">
         {props.contactData.address ? (
           <GoogleMap
             mapContainerStyle={mapStyles}

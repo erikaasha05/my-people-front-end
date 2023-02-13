@@ -46,7 +46,7 @@ const Contact = (props) => {
             token={props.token}
           />
         </Col>
-        <Col className="mt-4" xs={6}>
+        <Col className="mt-4" xs={7}>
           <p>
             <FiPhone className="contact-details" /> {props.contactData.number}
           </p>
@@ -82,7 +82,7 @@ const Contact = (props) => {
           </p>
           <Map contactData={props.contactData} />
         </Col>
-        <Col xs={2}>
+        <Col xs={1}>
           <UpdateContactForm
             contactData={props.contactData}
             handleUpdateContactSubmit={props.handleUpdateContactSubmit}

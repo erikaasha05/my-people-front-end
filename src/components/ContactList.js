@@ -44,9 +44,11 @@ const ContactList = (props) => {
     );
   });
   return (
-    <div className="contact-list scrollbar">
+    <div className="search-bar">
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <ListGroup variant="flush">{contacts}</ListGroup>
+      <div className="contact-list scrollbar">
+        <ListGroup variant="flush">{contacts}</ListGroup>
+      </div>
     </div>
   );
 };
