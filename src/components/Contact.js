@@ -4,32 +4,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { FiTrash2, FiPhone, FiMail, FiHome, FiUsers } from "react-icons/fi";
+import Badge from "react-bootstrap/Badge";
+import { FiTrash2, FiPhone, FiMail, FiHome, FiUsers, FiTag } from "react-icons/fi";
 import { FaBirthdayCake, FaStickyNote } from "react-icons/fa";
 import NewReminderForm from "./NewReminderForm";
 import UpdateContactForm from "./UpdateContactForm";
 import "./Contact.css";
-// import ReminderList from "./ReminderList";
 import Map from "./Map";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Contact = (props) => {
-  // const deleteContactToast = () => {
-  //   toast.success("Contact deleted", {
-  //     position: toast.POSITION.TOP_CENTER,
-  //   });
-  // };
-
-  // const onDelete = () => {
-  //   deleteContactToast();
-  //   setTimeout(() => props.onDeleteContact(props.contactData.contactId, props.token), 2000);
-  // }
-
-  // const delayed = () => {
-  //   setTimeout(onDelete, 2000);
-  // };
-
   return (
     <div>
       <Row>
@@ -69,7 +54,9 @@ const Contact = (props) => {
             <FaStickyNote /> {props.contactData.notes}
           </p>
           <p>
-            tags {props.contactData.tags}
+            <FiTag /> {props.contactData.tags ? (
+            <Badge pill bg="info" className="ms-3 text-uppercase align-middle">{props.contactData.tags}</Badge>
+          ) : null}
           </p>
           <p>
             <FiHome /> {props.contactData.address}

@@ -18,7 +18,7 @@ const UpdateContactForm = (props) => {
   };
 
   const closeModal = () => {
-    setTimeout(handleClose, 1500);
+    setTimeout(handleClose, 1000);
   };
 
   const handleShow = () => {
@@ -184,19 +184,36 @@ const UpdateContactForm = (props) => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="tags">Tags</Form.Label>
-              <Form.Control
+              {/* <Form.Control
                 type="text"
                 id="tags"
                 name="tags"
                 value={contactData.tags}
                 onChange={handleNewContactData}
                 placeholder="Select Tags"
-              />
+              /> */}
+              <Form.Select
+                type="select"
+                id="tags"
+                name="tags"
+                value={contactData.tags}
+                aria-label="Select tag"
+                onChange={handleNewContactData}
+              >
+                <option value="" disabled selected>
+                  Select tag
+                </option>
+                <option value="family">Family</option>
+                <option value="friend">Friend</option>
+                <option value="school">School</option>
+                <option value="work">Work</option>
+                <option value="game night">Game Night</option>
+              </Form.Select>
             </Form.Group>
             <Button variant="secondary" type="submit">
               Update Contact
             </Button>
-            <ToastContainer autoClose={500} />
+            <ToastContainer autoClose={300} />
           </Form>
         </Modal.Body>
       </Modal>
