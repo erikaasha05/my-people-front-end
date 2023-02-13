@@ -3,14 +3,17 @@ import PropTypes from "prop-types";
 import { ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
+import { format } from "date-fns";
 
 const ReminderList = (props) => {
   const reminders = props.reminders.map((reminder) => {
+    const formattedDate = format(new Date(reminder.date.replace(/-/g, '/')), "MMMM d, yyyy");
+
     return (
       <ListGroup.Item className="mb-2 rounded" key={reminder.reminderId}>
         <div className="ms-2 me-auto">
           <div className="fw-bold">{reminder.message}</div>
-          Reminder Date: {reminder.date}
+          Reminder Date: {formattedDate}
           <OverlayTrigger
             key="delete-reminder-left"
             placement="left"

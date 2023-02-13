@@ -18,12 +18,15 @@ import {
 } from "react-icons/fi";
 import { FaBirthdayCake, FaStickyNote } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
+import { format } from "date-fns";
 import NewReminderForm from "./NewReminderForm";
 import UpdateContactForm from "./UpdateContactForm";
 import Map from "./Map";
 import "./Contact.css";
 
 const Contact = (props) => {
+  const formattedDate = format(new Date(props.contactData.birthday.replace(/-/g, '/')), "MMMM d, yyyy");
+
   return (
     <div>
       <Row>
@@ -55,7 +58,7 @@ const Contact = (props) => {
           </p>
           <p>
             <FaBirthdayCake className="contact-details" />{" "}
-            {props.contactData.birthday}
+            {formattedDate}
           </p>
           <p>
             <FiUsers className="contact-details" />{" "}
