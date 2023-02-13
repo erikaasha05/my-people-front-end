@@ -1,4 +1,35 @@
 .contact-list {
-    max-height: 100px;
+    padding: 1rem;
+    max-height: 75vh;
     overflow: auto;
+}
+
+.scrollbar-near-moon {
+    scrollbar-color: #837365;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+}
+
+.scrollbar-near-moon::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    /* background-image: #837365; */
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#837365),
+    to(#e7dfd8)
+);
+/* background-image: -webkit-linear-gradient(bottom, #5ee7df 0%, #b490ca 100%);
+background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%); */
 }

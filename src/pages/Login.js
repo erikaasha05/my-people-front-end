@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import logo from "../my_people_logo.png";
 import useToken from "../components/useToken";
-import "./Login.css";
 
 const kDefaultFormData = {
   username: "",

@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 // import PropTypes from 'prop-types'
 import ListGroup from "react-bootstrap/ListGroup";
 import { FiPhone } from "react-icons/fi";
+import SearchBar from "./SearchBar";
 import "./ContactList.css";
 
+const filterContacts = (contacts, query) => {
+  if (!query) {
+    return contacts;
+  }
+
+  return contacts.filter((contact) => {
+    // const contactName = contact.firstName.toLowerCase();
+    // return contactName.includes(query);
+    const queryName = query.toLowerCase();
+    return contact.firstName.toLowerCase().includes(queryName);
+  });
+};
+
 const ContactList = (props) => {
-  const contacts = props.contacts.map((contact) => {
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get("search");
+  const [searchQuery, setSearchQuery] = useState(query || "");
+  const filteredContacts = filterContacts(props.contacts, searchQuery);
+
+  const contacts = filteredContacts.map((contact) => {
     return (
       <ListGroup.Item
         action
@@ -24,7 +43,8 @@ const ContactList = (props) => {
     );
   });
   return (
-    <div>
+    <div className="contact-list scrollbar-near-moon">
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <ListGroup variant="flush">{contacts}</ListGroup>
     </div>
   );
