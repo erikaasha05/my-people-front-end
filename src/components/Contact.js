@@ -25,7 +25,7 @@ import Map from "./Map";
 import "./Contact.css";
 
 const Contact = (props) => {
-  const formattedDate = format(new Date(props.contactData.birthday.replace(/-/g, '/')), "MMMM d, yyyy");
+  const formattedDate = props.contactData.birthday ? format(new Date(props.contactData.birthday.replace(/-/g, '/')), "MMMM d, yyyy") : "";
 
   return (
     <div>

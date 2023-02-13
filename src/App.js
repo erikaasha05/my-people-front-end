@@ -10,7 +10,6 @@ import NavBar from "./components/NavBar";
 import ReminderList from "./components/ReminderList";
 import useToken from "./components/useToken";
 
-
 const kBaseUrl = process.env.REACT_APP_BACKEND_URL;
 
 const convertFromContactApi = (apiContact) => {
@@ -67,7 +66,6 @@ const getAllRemindersApi = (token) => {
     })
     .catch((err) => console.log(`error from get reminders api ${err}`));
 };
-
 
 const getOneContactApi = (contactId, token) => {
   return axios
@@ -176,11 +174,10 @@ function App() {
     });
   };
 
-  
   useEffect(() => {
     getAllContacts(token);
     getAllReminders(token);
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const deleteContactToast = () => {
@@ -310,7 +307,7 @@ function App() {
       )}
       <footer className="bg-light">
         <Container>
-            <p className="footer-text">Copyright &copy; 2023 My People</p>
+          <p className="footer-text">Copyright &copy; 2023 My People</p>
         </Container>
       </footer>
     </section>

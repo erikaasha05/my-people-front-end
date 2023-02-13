@@ -65,7 +65,7 @@ ContactList.propTypes = {
       email: PropTypes.string,
       address: PropTypes.string,
       birthday: PropTypes.string,
-      relationship: PropTypes.string,
+      relationship: PropTypes.array,
       notes: PropTypes.string,
       tags: PropTypes.array,
     })
