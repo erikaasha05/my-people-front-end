@@ -3,7 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { FaTimesCircle } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import NewReminderForm from "./NewReminderForm";
@@ -25,10 +25,10 @@ const ReminderList = (props) => {
             <Button
               className="me-3 position-absolute end-0 translate-middle-y"
               size="sm"
-              variant="danger"
+              variant="outline-danger"
               onClick={() => props.onDeleteReminder(reminder.reminderId, props.token)}
             >
-              <FaTimesCircle />
+              <IoMdClose />
             </Button>
           </OverlayTrigger>
           <ToastContainer autoClose={200} />

@@ -11,8 +11,6 @@ const filterContacts = (contacts, query) => {
   }
 
   return contacts.filter((contact) => {
-    // const contactName = contact.firstName.toLowerCase();
-    // return contactName.includes(query);
     const queryName = query.toLowerCase();
     return contact.firstName.toLowerCase().includes(queryName);
   });

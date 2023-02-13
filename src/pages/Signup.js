@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import logo from "../my_people_logo.png";
-// import { data } from "jquery";
 
 const kDefaultFormData = {
   username: "",

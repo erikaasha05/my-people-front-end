@@ -69,6 +69,9 @@ const Contact = (props) => {
             <FaStickyNote /> {props.contactData.notes}
           </p>
           <p>
+            tags {props.contactData.tags}
+          </p>
+          <p>
             <FiHome /> {props.contactData.address}
           </p>
           <Map contactData={props.contactData} />
