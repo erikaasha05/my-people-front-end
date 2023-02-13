@@ -39,27 +39,27 @@ const Contact = (props) => {
         </Col>
         <Col className="mt-4" xs={6}>
           <p>
-            <FiPhone /> {props.contactData.number}
+            <FiPhone className="contact-details" /> {props.contactData.number}
           </p>
           <p>
-            <FiMail /> {props.contactData.email}
+            <FiMail className="contact-details" /> {props.contactData.email}
           </p>
           <p>
-            <FaBirthdayCake /> {props.contactData.birthday}
+            <FaBirthdayCake className="contact-details" /> {props.contactData.birthday}
           </p>
           <p>
-            <FiUsers /> {props.contactData.relationship}
+            <FiUsers className="contact-details" /> {props.contactData.relationship}
           </p>
           <p>
-            <FaStickyNote /> {props.contactData.notes}
+            <FaStickyNote className="contact-details" /> {props.contactData.notes}
           </p>
           <p>
             <FiTag /> {props.contactData.tags ? (
-            <Badge pill bg="info" className="ms-3 text-uppercase align-middle">{props.contactData.tags}</Badge>
+            <Badge pill bg="info" className="ms-2 text-uppercase align-middle">{props.contactData.tags}</Badge>
           ) : null}
           </p>
           <p>
-            <FiHome /> {props.contactData.address}
+            <FiHome className="contact-details" /> {props.contactData.address}
           </p>
           <Map contactData={props.contactData} />
         </Col>

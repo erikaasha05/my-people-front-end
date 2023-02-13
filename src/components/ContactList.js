@@ -12,7 +12,10 @@ const filterContacts = (contacts, query) => {
 
   return contacts.filter((contact) => {
     const queryName = query.toLowerCase();
-    return contact.firstName.toLowerCase().includes(queryName);
+    return (
+      contact.firstName.toLowerCase().includes(queryName) ||
+      contact.lastName.toLowerCase().includes(queryName)
+    );
   });
 };
 
