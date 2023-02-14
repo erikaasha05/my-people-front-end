@@ -92,8 +92,8 @@ const Contact = (props) => {
             token={props.token}
           />
           <OverlayTrigger
-            key="delete-right"
-            placement="right"
+            key="delete-left"
+            placement="left"
             overlay={<Tooltip id="tooltip-delete">Delete Contact</Tooltip>}
           >
             <Button

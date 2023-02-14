@@ -74,8 +74,8 @@ const UpdateContactForm = (props) => {
   return (
     <div>
       <OverlayTrigger
-        key="edit-right"
-        placement="right"
+        key="edit-left"
+        placement="left"
         overlay={<Tooltip id="tooltip-edit">Update Contact</Tooltip>}
       >
         <Button className="me-3" variant="light" size="sm" onClick={handleShow}>
