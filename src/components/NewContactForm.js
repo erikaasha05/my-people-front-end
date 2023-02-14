@@ -17,7 +17,7 @@ const kDefaultFormData = {
   tags: "",
 };
 
-// helper function to help format phone numbers
+// helper function to format phone numbers
 const formatNumber = (value) => {
   const phoneNumber = value.replace(/[^\d]/g, "");
   const phoneNumberLength = phoneNumber.length;
@@ -190,7 +190,7 @@ const NewContactForm = (props) => {
       <Button variant="secondary" type="submit">
         Add Contact
       </Button>
-      <ToastContainer autoClose={300} />
+      <ToastContainer autoClose={600} />
     </Form>
   );
 };
