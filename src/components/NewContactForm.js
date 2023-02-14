@@ -12,7 +12,7 @@ const kDefaultFormData = {
   email: "",
   address: "",
   birthday: "",
-  relationships: "",
+  relationship: "",
   notes: "",
   tags: "",
 };
@@ -146,7 +146,7 @@ const NewContactForm = (props) => {
         />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="relationships">Relationships</Form.Label>
+        <Form.Label htmlFor="relationship">Relationships</Form.Label>
         <Form.Control
           type="text"
           id="relationship"
