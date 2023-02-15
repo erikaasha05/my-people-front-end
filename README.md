@@ -1,7 +1,53 @@
-# Getting Started with Create React App
+<div align="center">
+  <a href="[https://github.com/github_username/repo_name](https://github.com/erikaasha05/my-people-front-end)">
+    <img src="src/my_people_logo.png" alt="Logo" width="100" height="100">
+  </a>
+</div>
+  
+  <h1 align="center">My People</h1>
+  <p>My People was created for my Ada Developers Academy's Capstone project. This web app helps you organize your contacts. Users can add contacts, view contact information, and set reminders for important dates, and search for contacts by name.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
+# About The Project
 
+## Features
+
+* Users can add contacts and provide information for each contact
+* Contact information can be updated
+* Users can add reminders for events, important dates, when to reach out to a contact
+* Users can search for contacts by name
+
+## Built With
+
+* [![React][React.js]][React-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+
+## Dependencies
+
+* react bootstrap
+* react-icons
+* axios
+* react-router-dom
+* react-toastify
+* date-fns
+* @react-google-maps/api
+* react-geocode
+
+## Setup
+
+To get a local copy, fork and clone this repo, then run `$ yarn install` in the project directory. To begin the local development server, run `$ yarn start`.
+
+### Create `.env` File
+
+Since the front-end sends API requests to the back-end and uses Google Maps API, the front-end needs to include a `.env` with the following:
+
+```
+REACT_APP_BACKEND_URL=http://127.0.0.1:5000
+REACT_APP_GOOGLE_MAPS_API_KEY="YOUR KEY HERE"
+```
+Replace `YOUR KEY HERE` with your Google Maps API Key. 
+
+<!--
 ## Available Scripts
 
 In the project directory, you can run:
@@ -44,27 +90,12 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+-->
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MARKDOWN LINKS & IMAGES -->
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
